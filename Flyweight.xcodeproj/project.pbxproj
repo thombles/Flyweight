@@ -95,7 +95,7 @@
 		525DDBE71E2CC265008FAA0C /* EntryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryParser.swift; path = Flyweight/XML/EntryParser.swift; sourceTree = "<group>"; };
 		525DDBE81E2CC265008FAA0C /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedParser.swift; path = Flyweight/XML/FeedParser.swift; sourceTree = "<group>"; };
 		525DDBE91E2CC265008FAA0C /* SourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SourceParser.swift; path = Flyweight/XML/SourceParser.swift; sourceTree = "<group>"; };
-		525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ImageNoticeFeed.xml; sourceTree = "<group>"; };
+		525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ImageNoticeFeed.xml; path = DataFiles/ImageNoticeFeed.xml; sourceTree = "<group>"; };
 		525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlTests.swift; sourceTree = "<group>"; };
 		52951C0A1E04AF0100AA8450 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		52951C0E1E04B0E700AA8450 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
