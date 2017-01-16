@@ -15,13 +15,15 @@
 		5240C4E01D11631E003EDB8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240C4DE1D11631E003EDB8D /* Main.storyboard */; };
 		5240C4E21D11631E003EDB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5240C4E11D11631E003EDB8D /* Assets.xcassets */; };
 		5240C4E51D11631E003EDB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240C4E31D11631E003EDB8D /* LaunchScreen.storyboard */; };
-		5240C4F01D11631E003EDB8D /* FlyweightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4EF1D11631E003EDB8D /* FlyweightTests.swift */; };
 		5240C4FB1D11631E003EDB8D /* FlyweightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4FA1D11631E003EDB8D /* FlyweightUITests.swift */; };
 		525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE51E2CC265008FAA0C /* ASDTOs.swift */; };
 		525DDBEB1E2CC265008FAA0C /* AuthorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE61E2CC265008FAA0C /* AuthorParser.swift */; };
 		525DDBEC1E2CC265008FAA0C /* EntryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE71E2CC265008FAA0C /* EntryParser.swift */; };
 		525DDBED1E2CC265008FAA0C /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE81E2CC265008FAA0C /* FeedParser.swift */; };
 		525DDBEE1E2CC265008FAA0C /* SourceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE91E2CC265008FAA0C /* SourceParser.swift */; };
+		525DDBF31E2CD5C3008FAA0C /* ImageNoticeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */; };
+		525DDBF71E2CD607008FAA0C /* FlyweightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4EF1D11631E003EDB8D /* FlyweightTests.swift */; };
+		525DDBF81E2CD75F008FAA0C /* XmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */; };
 		52951C0B1E04AF0100AA8450 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0A1E04AF0100AA8450 /* Session.swift */; };
 		52951C0F1E04B0E700AA8450 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0E1E04B0E700AA8450 /* SessionManager.swift */; };
 		52951C111E04B8E400AA8450 /* NetJobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C101E04B8E400AA8450 /* NetJobManager.swift */; };
@@ -82,10 +84,10 @@
 		5240C4E11D11631E003EDB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5240C4E41D11631E003EDB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5240C4E61D11631E003EDB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5240C4EB1D11631E003EDB8D /* Flyweight.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Flyweight.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5240C4EB1D11631E003EDB8D /* FlyweightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlyweightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240C4EF1D11631E003EDB8D /* FlyweightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyweightTests.swift; sourceTree = "<group>"; };
 		5240C4F11D11631E003EDB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5240C4F61D11631E003EDB8D /* Flyweight.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Flyweight.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5240C4F61D11631E003EDB8D /* FlyweightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlyweightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240C4FA1D11631E003EDB8D /* FlyweightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyweightUITests.swift; sourceTree = "<group>"; };
 		5240C4FC1D11631E003EDB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525DDBE51E2CC265008FAA0C /* ASDTOs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASDTOs.swift; path = Flyweight/XML/ASDTOs.swift; sourceTree = "<group>"; };
@@ -93,6 +95,8 @@
 		525DDBE71E2CC265008FAA0C /* EntryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryParser.swift; path = Flyweight/XML/EntryParser.swift; sourceTree = "<group>"; };
 		525DDBE81E2CC265008FAA0C /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedParser.swift; path = Flyweight/XML/FeedParser.swift; sourceTree = "<group>"; };
 		525DDBE91E2CC265008FAA0C /* SourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SourceParser.swift; path = Flyweight/XML/SourceParser.swift; sourceTree = "<group>"; };
+		525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ImageNoticeFeed.xml; sourceTree = "<group>"; };
+		525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlTests.swift; sourceTree = "<group>"; };
 		52951C0A1E04AF0100AA8450 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		52951C0E1E04B0E700AA8450 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		52951C101E04B8E400AA8450 /* NetJobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetJobManager.swift; sourceTree = "<group>"; };
@@ -196,8 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				5240C4D51D11631E003EDB8D /* Flyweight.app */,
-				5240C4EB1D11631E003EDB8D /* Flyweight.xctest */,
-				5240C4F61D11631E003EDB8D /* Flyweight.xctest */,
+				5240C4EB1D11631E003EDB8D /* FlyweightTests.xctest */,
+				5240C4F61D11631E003EDB8D /* FlyweightUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,8 +222,10 @@
 		5240C4EE1D11631E003EDB8D /* FlyweightTests */ = {
 			isa = PBXGroup;
 			children = (
+				525DDBEF1E2CD576008FAA0C /* DataFiles */,
 				5240C4EF1D11631E003EDB8D /* FlyweightTests.swift */,
 				5240C4F11D11631E003EDB8D /* Info.plist */,
+				525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */,
 			);
 			path = FlyweightTests;
 			sourceTree = "<group>";
@@ -243,6 +249,14 @@
 				525DDBE91E2CC265008FAA0C /* SourceParser.swift */,
 			);
 			name = XML;
+			sourceTree = "<group>";
+		};
+		525DDBEF1E2CD576008FAA0C /* DataFiles */ = {
+			isa = PBXGroup;
+			children = (
+				525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */,
+			);
+			name = DataFiles;
 			sourceTree = "<group>";
 		};
 		52951C091E0329C800AA8450 /* ViewControllers */ = {
@@ -381,7 +395,7 @@
 			);
 			name = FlyweightTests;
 			productName = FlyweightTests;
-			productReference = 5240C4EB1D11631E003EDB8D /* Flyweight.xctest */;
+			productReference = 5240C4EB1D11631E003EDB8D /* FlyweightTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5240C4F51D11631E003EDB8D /* FlyweightUITests */ = {
@@ -402,7 +416,7 @@
 			);
 			name = FlyweightUITests;
 			productName = FlyweightUITests;
-			productReference = 5240C4F61D11631E003EDB8D /* Flyweight.xctest */;
+			productReference = 5240C4F61D11631E003EDB8D /* FlyweightUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -473,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525DDBF31E2CD5C3008FAA0C /* ImageNoticeFeed.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,7 +682,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5240C4F01D11631E003EDB8D /* FlyweightTests.swift in Sources */,
+				525DDBF71E2CD607008FAA0C /* FlyweightTests.swift in Sources */,
+				525DDBF81E2CD75F008FAA0C /* XmlTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,9 +858,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FlyweightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.id.karp.FlyweightTests;
-				PRODUCT_NAME = Flyweight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flyweight.app/Flyweight";
 			};
@@ -856,9 +873,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FlyweightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.id.karp.FlyweightTests;
-				PRODUCT_NAME = Flyweight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flyweight.app/Flyweight";
 			};
@@ -869,9 +887,10 @@
 			baseConfigurationReference = A58A643ED879E47C0E689D35 /* Pods-FlyweightUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FlyweightUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.id.karp.FlyweightUITests;
-				PRODUCT_NAME = Flyweight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Flyweight;
 			};
@@ -882,9 +901,10 @@
 			baseConfigurationReference = 6236EFCE1069DBFF271D71FC /* Pods-FlyweightUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FlyweightUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.id.karp.FlyweightUITests;
-				PRODUCT_NAME = Flyweight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Flyweight;
 			};

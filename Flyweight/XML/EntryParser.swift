@@ -130,6 +130,13 @@ class EntryParser: NSObject, XMLParserDelegate {
             self.entry.inReplyToNoticeRef = attrs["ref"]
             self.entry.inReplyToNoticeUrl = attrs["href"]
         }
+        if namespace == FeedParser.AtomNS && element == "link" && attrs["rel"] == "enclosure" {
+            let enclosure = ASEnclosure()
+            enclosure.url = attrs["href"]
+            enclosure.mimeType = attrs["type"]
+            enclosure.length = Int64(attrs["length"] ?? "")
+            entry.enclosures.append(enclosure)
+        }
         
         return nil
     }

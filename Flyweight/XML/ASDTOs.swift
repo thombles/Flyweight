@@ -37,6 +37,7 @@ public class ASEntry {
     var conversationNumber: Int64?
     var conversationThread: String?
     var categories: [String] = []
+    var enclosures: [ASEnclosure] = []
     var client: String?
     
     var isPost = false
@@ -69,10 +70,9 @@ public class ASAvatar {
     var url: String?
 }
 
-public class ASObject {
-    
+public class ASEnclosure {
+    var url: String?
+    var mimeType: String?
+    var length: Int64?
 }
 
-public class ASFavouritedObject {
-    
-}
