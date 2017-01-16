@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Account" representedClassName="AccountMO" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="server" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DownloadedBinary" representedClassName="DownloadedBinaryMO" syncable="YES" codeGenerationType="class">
+        <attribute name="localPath" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="GSTimeline" representedClassName="GSTimelineMO" syncable="YES" codeGenerationType="class">
+        <attribute name="atBeginning" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="authedAs" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="listType" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="textParam" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="instance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" syncable="YES"/>
+    </entity>
+    <entity name="Instance" representedClassName="InstanceMO" syncable="YES" codeGenerationType="class">
+        <attribute name="address" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Notice" representedClassName="NoticeMO" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="faveNum" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="repeatNum" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="server" attributeType="String" syncable="YES"/>
+        <attribute name="text" attributeType="String" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="NoticeInGSTimeline" representedClassName="NoticeInGSTimelineMO" syncable="YES">
+        <attribute name="noticeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="gsTimeline" maxCount="1" deletionRule="Nullify" destinationEntity="GSTimeline" syncable="YES"/>
+        <relationship name="notice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notice" syncable="YES"/>
+        <relationship name="previousNotice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notice" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="UserMO" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="profileImageUrlProfileSize" attributeType="String" syncable="YES"/>
+        <attribute name="profileUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screenName" attributeType="String" syncable="YES"/>
+        <relationship name="instance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Account" positionX="90" positionY="63" width="128" height="105"/>
+        <element name="DownloadedBinary" positionX="-74" positionY="-90" width="128" height="75"/>
+        <element name="GSTimeline" positionX="81" positionY="36" width="128" height="135"/>
+        <element name="Instance" positionX="-72" positionY="81" width="128" height="73"/>
+        <element name="Notice" positionX="99" positionY="72" width="128" height="165"/>
+        <element name="NoticeInGSTimeline" positionX="108" positionY="117" width="128" height="105"/>
+        <element name="User" positionX="178" positionY="9" width="128" height="135"/>
+    </elements>
+</model>
