@@ -46,6 +46,7 @@
 		52C88A451DACF5710098538C /* NetJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C88A441DACF5710098538C /* NetJob.swift */; };
 		52C88A471DACF57A0098538C /* BinaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C88A461DACF57A0098538C /* BinaryManager.swift */; };
 		52C88A491DAD01D30098538C /* NetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C88A481DAD01D30098538C /* NetImage.swift */; };
+		52CCE1D71E336BF50013DAB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CCE1D61E336BF50013DAB1 /* ContentView.swift */; };
 		52DFDCEB1D12B30D008EF03D /* NoticeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCEA1D12B30D008EF03D /* NoticeManager.swift */; };
 		52DFDCF31D12B538008EF03D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF21D12B538008EF03D /* Server.swift */; };
 		52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF41D12B5C8008EF03D /* UserManager.swift */; };
@@ -122,6 +123,7 @@
 		52C88A441DACF5710098538C /* NetJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetJob.swift; sourceTree = "<group>"; };
 		52C88A461DACF57A0098538C /* BinaryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryManager.swift; sourceTree = "<group>"; };
 		52C88A481DAD01D30098538C /* NetImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetImage.swift; sourceTree = "<group>"; };
+		52CCE1D61E336BF50013DAB1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52DFDCEA1D12B30D008EF03D /* NoticeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeManager.swift; sourceTree = "<group>"; };
 		52DFDCF21D12B538008EF03D /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		52DFDCF41D12B5C8008EF03D /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			children = (
 				52C88A421DAB9D5C0098538C /* NoticeCell.swift */,
 				52C88A481DAD01D30098538C /* NetImage.swift */,
+				52CCE1D61E336BF50013DAB1 /* ContentView.swift */,
 			);
 			name = Views;
 			path = Flyweight/Views;
@@ -670,6 +673,7 @@
 				52C88A471DACF57A0098538C /* BinaryManager.swift in Sources */,
 				5298B3A01E0F3EA800FA7A3C /* Events.swift in Sources */,
 				5240C4D91D11631E003EDB8D /* AppDelegate.swift in Sources */,
+				52CCE1D71E336BF50013DAB1 /* ContentView.swift in Sources */,
 				52C88A451DACF5710098538C /* NetJob.swift in Sources */,
 				52DFDCF71D12B5D8008EF03D /* ServerManager.swift in Sources */,
 				52951C191E065FED00AA8450 /* InstanceManager.swift in Sources */,

@@ -16,7 +16,7 @@
 import UIKit
 
 class NoticeCell: UITableViewCell {
-    @IBOutlet weak var noticeText: UILabel!
+    @IBOutlet weak var noticeText: ContentView!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var profileImage: NetImage!
     @IBOutlet weak var nickText: UILabel!

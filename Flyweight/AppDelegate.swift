@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let session = Session()
         
         let keychain = KeychainSwift()
-        let username = "USERNAME"
-        let password = "PASSWORD"
-        let server = "https://SERVER/"
+        let username = "user1"
+        let password = "t4qXvLH8q87DuKVX"
+        let server = "https://gs1.karp.id.au/"
         
         // 1. Make sure we have an Account in DB
         let query = NSFetchRequest<AccountMO>(entityName: "Account")

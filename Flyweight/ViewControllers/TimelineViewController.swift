@@ -112,7 +112,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         if let notice = notices[row].notice {
-            cell.noticeText.text = notice.htmlContent
+            cell.noticeText.htmlContent = notice.htmlContent
             cell.nickText.text = notice.user?.screenName
             cell.fullNameText.text = notice.user?.name
             let formatter = DateFormatter()
