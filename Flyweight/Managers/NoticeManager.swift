@@ -95,6 +95,9 @@ class NoticeManager {
                 // It's okay if the repeated notice goes into the DB but we hit a parse error for the containing one below
                 guard repeatedNotice != nil else { continue }
             }
+            if entry.isDelete {
+                // TODO either purge the old one from the DB or mark it hidden
+            }
             
             let new = NSEntityDescription.insertNewObject(forEntityName: "Notice", into: session.moc) as! NoticeMO
             

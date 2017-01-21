@@ -68,7 +68,10 @@ class GSTimelineManager {
         let notices = session.fetch(request: query).sorted { $0.noticeId > $1.noticeId }
         for n in notices {
             count += 1
-            res.noticesToInsert.append(n)
+            guard let notice = n.notice else { continue }
+            if !notice.isFavourite && !notice.isDelete {
+                res.noticesToInsert.append(n)
+            }
             if n.previousNotice == nil && timeline.atBeginning {
                 res.loadMorePossible = false
             }
@@ -89,7 +92,10 @@ class GSTimelineManager {
         let refreshPromise: Promise<RefreshResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> RefreshResult in
             let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
             let refreshResult = RefreshResult()
-            refreshResult.noticesToInsert = noticesInTimeline.reversed()
+            refreshResult.noticesToInsert = noticesInTimeline.reversed().filter() { n in
+                guard let notice = n.notice else { return false }
+                return !notice.isFavourite && !notice.isDelete
+            }
             refreshResult.clearListFirst = !result.reachedStart
             return refreshResult
         }
@@ -115,6 +121,11 @@ class GSTimelineManager {
             let loadMoreResult = LoadMoreResult()
             for c in candidates {
                 // Take a candidate
+                guard let notice = c.notice else { continue }
+                if notice.isFavourite || notice.isDelete {
+                    continue
+                }
+                
                 loadMoreResult.noticesToInsert.append(c)
                 
                 // If there is no previous notice in this chain, terminate here
@@ -144,7 +155,10 @@ class GSTimelineManager {
             let loadMorePromise: Promise<LoadMoreResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> LoadMoreResult in
                 let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
                 let loadMoreResult = LoadMoreResult()
-                loadMoreResult.noticesToInsert = noticesInTimeline.reversed()
+                loadMoreResult.noticesToInsert = noticesInTimeline.reversed().filter() { n in
+                    guard let notice = n.notice else { return false }
+                    return !notice.isFavourite && !notice.isDelete
+                }
                 loadMoreResult.loadMorePossible = !result.reachedStart
                 if result.reachedStart {
                     // mark the timeline if we're at the beginning
