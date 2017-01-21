@@ -15,7 +15,7 @@
 
 import UIKit
 
-fileprivate struct EmbeddedLink {
+struct EmbeddedLink {
     var startIndex: Int
     var endIndex: Int
     var url: String
@@ -30,18 +30,20 @@ class ContentView: UILabel {
         }
         set {
             guard let html = newValue else { return }
-            self.attributedText = convertHtmlToAttributedString(html: html)
+            let (att, links) = ContentView.convertHtmlToAttributedString(html: html)
+            self.attributedText = att
+            self.links = links
         }
     }
     
-    private func convertHtmlToAttributedString(html: String) -> NSAttributedString {
+    class func convertHtmlToAttributedString(html: String) -> (NSAttributedString, [EmbeddedLink]) {
         // Just detect anchors for now and strip out any other tags
         // Pretty crusty but I'm not using a WKWebView just to display a notice
         // I only want to allow very specific things through anyway
         // TODO Nicer code
         
         var unattOutput = "" // unformatted version of the eventual displayed string
-        links = []
+        var links: [EmbeddedLink] = []
         
         let ns = html as NSString
         var index = 0
@@ -68,47 +70,59 @@ class ContentView: UILabel {
                     index += 1
                     continue
                 } else {
-                    index += 5
+                    index += 6
                 }
                 
                 // Otherwise we're now looking at the URL
                 var url = ""
                 repeat {
-                    index += 1
                     nextChar = ns.substring(with: NSMakeRange(index, 1))
                     if nextChar != "\"" {
                         url += nextChar
                     }
+                    index += 1
                 } while nextChar != "\"" && index < ns.length
                 
                 // Now get to the end of the anchor tag
                 repeat {
-                    index += 1
                     nextChar = ns.substring(with: NSMakeRange(index, 1))
+                    index += 1
                 } while nextChar != ">" && index < ns.length
                 
-                // Now we're looking at the ">" and it will be followed by the link description
+                // Now we're looking just past the ">" and it will be followed by the link description
+                var partOfDesc = true
                 repeat {
-                    index += 1
                     nextChar = ns.substring(with: NSMakeRange(index, 1))
-                    if nextChar != "<" {
+                    nextSnippet = ns.substring(with: NSMakeRange(index, min(4, ns.length - index)))
+                    if nextSnippet == "</a>" {
+                        break
+                    } else if nextChar == "<" { // some other tag - skip over it
+                        partOfDesc = false
+                    } else if nextChar == ">" && !partOfDesc {
+                        partOfDesc = true
+                    } else if partOfDesc {
                         unattOutput += nextChar
                     }
-                } while nextChar != "<" && index < ns.length
+                    index += 1
+                } while index < ns.length
                 
                 // Let the ordinary tag skip take care of the next <
                 let endOfAnchor = (unattOutput as NSString).length
-                let link = EmbeddedLink(startIndex: startOfAnchor, endIndex: endOfAnchor, url: url)
-                links.append(link)
+                
+                // Do some basic validity checks. Weird stuff won't work, I don't mind at this point
+                let urlns = (url as NSString)
+                if endOfAnchor != startOfAnchor && (urlns.hasPrefix("http://") || urlns.hasPrefix("https://")) {
+                    let link = EmbeddedLink(startIndex: startOfAnchor, endIndex: endOfAnchor, url: url)
+                    links.append(link)
+                }
                 
                 // All done
             } else if nextChar == "<" {
                 // Skip until end of tag
                 repeat {
-                    index += 1
                     nextChar = ns.substring(with: NSMakeRange(index, 1))
+                    index += 1
                 } while nextChar != ">" && index < ns.length
-                index += 1
             } else {
                 unattOutput += nextChar
                 index += 1
@@ -124,6 +138,6 @@ class ContentView: UILabel {
             att.addAttribute(NSForegroundColorAttributeName, value: linkColour, range: NSMakeRange(l.startIndex, l.endIndex - l.startIndex))
         }
         
-        return att
+        return (att, links)
     }
 }
