@@ -23,36 +23,71 @@ class UserManager {
         self.session = session
     }
     
-    func getUser(profileUrl: String?) -> UserMO? {
-        guard let profileUrl = profileUrl else
+    func getUser(server: String?, profileUrl: String?) -> UserMO? {
+        guard let profileUrl = profileUrl, let server = server else
         {
             return nil
         }
         
         let query = NSFetchRequest<UserMO>(entityName: "User")
-        query.predicate = NSPredicate(format: "profileUrl = %@", profileUrl)
+        query.predicate = NSPredicate(format: "profileUrl = %@ AND server = %@", profileUrl, server)
         let results = session.fetch(request: query)
         return results.first
     }
-    
-    func processDTO(dto: UserDTO?) -> UserMO?
+ 
+    func processFeedAuthor(sourceServer: String, author: ASAuthor?) -> UserMO?
     {
-        guard let dto = dto, let username = dto.name, let screenName = dto.screenName, let profileImageUrlProfileSize = dto.profileImageUrlProfileSize, let profileUrl = dto.statusnetProfileUrl else {
+        // Minimum parts required
+        guard let author = author,
+            let uri = author.uri,
+            let statusNetUserId = author.statusNetUserId,
+            let username = author.username else
+        {
             return nil
         }
         
-        if let existing = getUser(profileUrl: profileUrl) {
+        if let existing = getUser(server: sourceServer, profileUrl: uri) {
+            // TODO apply updates
             return existing
         }
         
         // Make a new User
         let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: session.moc) as! UserMO
+        user.id = statusNetUserId
+        user.profileUrl = uri
         user.name = username
-        user.screenName = screenName
-        user.profileImageUrlProfileSize = profileImageUrlProfileSize
-        user.profileUrl = profileUrl
-        session.persist()
+        user.screenName = author.displayName
+        user.bio = author.bio
+        user.server = sourceServer
+        NSLog("Added user \(user.name)")
         
+        // Also process Avatars if we're making a new user. Not strictly required but do our best with them
+        processFeedAvatars(user: user, avatars: author.avatars)
+        
+        session.persist()
         return user
     }
+    
+    func processFeedAvatars(user: UserMO, avatars: [ASAvatar]) {
+        // Assuming new or updated user at this stage. Create new entries.
+        // Should really diff them
+        user.avatars = []
+        for av in avatars {
+            guard let url = av.url,
+                let mimeType = av.mimeType,
+                let width = av.width,
+                let height = av.height else
+            {
+                continue
+            }
+            
+            let avatarMO = NSEntityDescription.insertNewObject(forEntityName: "UserAvatar", into: session.moc) as! UserAvatarMO
+            avatarMO.url = url
+            avatarMO.mimeType = mimeType
+            avatarMO.width = width
+            avatarMO.height = height
+            user.addToAvatars(avatarMO)
+        }
+    }
+
 }

@@ -44,24 +44,4 @@ public class NoticeInGSTimelineMO: NSManagedObject {
     }
 }
 
-@objc(NoticeMO)
-public class NoticeMO: NSManagedObject {
-    @NSManaged var server: String
-    @NSManaged var id: Int64
-    @NSManaged var text: String
-    @NSManaged var user: UserMO!
-    @NSManaged var lastUpdated: Date
-    @NSManaged var createdAt: Date
-    @NSManaged var faveNum: Int64
-    @NSManaged var repeatNum: Int64
-
-    override public func awakeFromInsert() {
-        server = ""
-        id = 0
-        text = ""
-        createdAt = Date()
-        faveNum = 0
-        repeatNum = 0
-    }
-}
 

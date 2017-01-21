@@ -112,16 +112,30 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         if let notice = notices[row].notice {
-            cell.noticeText.text = notice.text
-            cell.nickText.text = notice.user.screenName
-            cell.fullNameText.text = notice.user.name
+            cell.noticeText.text = notice.htmlContent
+            cell.nickText.text = notice.user?.screenName
+            cell.fullNameText.text = notice.user?.name
             let formatter = DateFormatter()
             formatter.dateStyle = .none
             formatter.timeStyle = .short
-            cell.time.text = formatter.string(from: notice.createdAt as Date)
+            if let published = notice.published {
+                cell.time.text = formatter.string(from: published as Date)
+            }
             cell.profileImage.session = session
-            cell.profileImage.url = notice.user.profileImageUrlProfileSize
-            session?.binaryManager.downloadImageIfNecessary(notice.user.profileImageUrlProfileSize)
+            if let avatars = notice.user?.avatars {
+                var biggest: UserAvatarMO?
+                for obj in avatars {
+                    if let av = obj as? UserAvatarMO {
+                        if av.width > biggest?.width ?? 0 {
+                            biggest = av
+                        }
+                    }
+                }
+                cell.profileImage.url = biggest?.url
+                session?.binaryManager.downloadImageIfNecessary(biggest?.url)
+            } else {
+                cell.profileImage.url = nil
+            }
             cell.likeCount.isHidden = notice.faveNum < 0
             cell.repeatCount.isHidden = notice.repeatNum < 0
             cell.likeCount.text = "\(notice.faveNum)"

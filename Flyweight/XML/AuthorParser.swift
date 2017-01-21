@@ -34,6 +34,7 @@ class AuthorParser: NSObject, XMLParserDelegate {
             author.uri = tagText["uri"]
             author.username = tagText["username"]
             author.displayName = tagText["displayName"]
+            author.bio = tagText["bio"]
             completion(author)
         } else {
             currentTag = nil
@@ -53,6 +54,7 @@ class AuthorParser: NSObject, XMLParserDelegate {
         if namespace == FeedParser.AtomNS && element == "uri" { return "uri" }
         if namespace == FeedParser.AtomNS && element == "name" { return "username" }
         if namespace == FeedParser.PoCoNS && element == "displayName" { return "displayName" }
+        if namespace == FeedParser.AtomNS && element == "summary" { return "bio" }
         
         if namespace == FeedParser.AtomNS && element == "link"
             && attrs["rel"] == "alternate" && attrs["type"] == "text/html" {

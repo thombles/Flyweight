@@ -167,12 +167,12 @@ class GSTimelineManager {
         var prevNotice: NoticeMO? = nil
         let chainedNotice: NoticeMO? = netJobResult.reachedStart ? netJobResult.limitNotice?.notice : nil
         var noticesInList: [NoticeInGSTimelineMO] = []
-        let ascendingNotices = netJobResult.newNotices.sorted(by: { n1, n2 in return n1.id < n2.id })
+        let ascendingNotices = netJobResult.newNotices.sorted(by: { n1, n2 in return n1.statusNetId < n2.statusNetId })
         
         // If this was a LoadMore, i.e. ids are lower, join the chain!
         if let first = ascendingNotices.last {
             if let limitNotice = netJobResult.limitNotice {
-                if first.id < limitNotice.noticeId {
+                if first.statusNetId < limitNotice.noticeId {
                     limitNotice.previousNotice = first
                 }
             }
@@ -180,7 +180,7 @@ class GSTimelineManager {
         
         for n in ascendingNotices {
             let noticeInTimeline = NSEntityDescription.insertNewObject(forEntityName: "NoticeInGSTimeline", into: session.moc) as! NoticeInGSTimelineMO
-            noticeInTimeline.noticeId = n.id
+            noticeInTimeline.noticeId = n.statusNetId
             noticeInTimeline.previousNotice = prevNotice ?? chainedNotice
             noticeInTimeline.gsTimeline = timeline
             noticeInTimeline.notice = n

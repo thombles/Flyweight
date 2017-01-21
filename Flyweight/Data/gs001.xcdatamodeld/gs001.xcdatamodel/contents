@@ -23,13 +23,29 @@
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Notice" representedClassName="NoticeMO" syncable="YES">
-        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="client" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conversationId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="conversationThread" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conversationUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="faveNum" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="favouritedHtmlLink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favouritedStatusNetId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="htmlContent" attributeType="String" syncable="YES"/>
+        <attribute name="htmlLink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inReplyToNoticeTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inReplyToNoticeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDelete" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isOwnPost" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isRepeat" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isReply" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="published" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="repeatNum" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="server" attributeType="String" syncable="YES"/>
-        <attribute name="text" attributeType="String" syncable="YES"/>
+        <attribute name="statusNetId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="repeatedNotice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notice" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="NoticeInGSTimeline" representedClassName="NoticeInGSTimelineMO" syncable="YES">
@@ -39,20 +55,29 @@
         <relationship name="previousNotice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notice" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="UserMO" syncable="YES" codeGenerationType="class">
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="profileImageUrlProfileSize" attributeType="String" syncable="YES"/>
         <attribute name="profileUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screenName" attributeType="String" syncable="YES"/>
+        <attribute name="server" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="avatars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserAvatar" syncable="YES"/>
         <relationship name="instance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" syncable="YES"/>
+    </entity>
+    <entity name="UserAvatar" representedClassName="UserAvatarMO" syncable="YES" codeGenerationType="class">
+        <attribute name="height" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mimeType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="Account" positionX="90" positionY="63" width="128" height="105"/>
         <element name="DownloadedBinary" positionX="-74" positionY="-90" width="128" height="75"/>
-        <element name="GSTimeline" positionX="81" positionY="36" width="128" height="135"/>
+        <element name="GSTimeline" positionX="81" positionY="36" width="128" height="30"/>
         <element name="Instance" positionX="-72" positionY="81" width="128" height="73"/>
-        <element name="Notice" positionX="99" positionY="72" width="128" height="165"/>
+        <element name="Notice" positionX="99" positionY="72" width="128" height="405"/>
         <element name="NoticeInGSTimeline" positionX="108" positionY="117" width="128" height="105"/>
-        <element name="User" positionX="178" positionY="9" width="128" height="135"/>
+        <element name="User" positionX="178" positionY="9" width="128" height="165"/>
+        <element name="UserAvatar" positionX="54" positionY="63" width="128" height="30"/>
     </elements>
 </model>

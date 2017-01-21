@@ -83,7 +83,9 @@ class EntryParser: NSObject, XMLParserDelegate {
             self.entry.htmlLink = attrs["href"]
         }
         if namespace == FeedParser.AtomNS /* wrong but anyway */ && element == "status_net" {
-            entry.statusNetNoticeId = Int64(attrs["notice_id"] ?? "")
+            if entry.statusNetNoticeId == nil { // can be set two ways
+                entry.statusNetNoticeId = Int64(attrs["notice_id"] ?? "")
+            }
         }
         if namespace == FeedParser.ActivityStreamNS && element == "verb" { return "activityVerb" }
         if namespace == FeedParser.AtomNS && element == "published" { return "published" }
@@ -122,6 +124,9 @@ class EntryParser: NSObject, XMLParserDelegate {
             }
         }
         if namespace == FeedParser.StatusNetNS && element == "notice_info" {
+            if self.entry.statusNetNoticeId == nil { // can be set two ways
+                self.entry.statusNetNoticeId = Int64(attrs["local_id"] ?? "")
+            }
             self.entry.client = attrs["source"]
             self.entry.repeatOfNoticeId = Int64(attrs["repeat_of"] ?? "")
         }

@@ -104,6 +104,19 @@ class ServerApi {
             }
         }
     }
+    
+    func getPublicFeed(params: ListRequestParameters) -> Promise<Data> {
+        let path = "statuses/public_timeline.atom\(params.queryString)"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
+                if let data = response.data {
+                    fulfil(data)
+                    return
+                }
+                reject(ApiError(path: path, error: response.result.error))
+            }
+        }
+    }
  
     fileprivate func makeApiUrl(_ path: String) -> String {
         return baseUrl + "api/" + path

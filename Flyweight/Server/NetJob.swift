@@ -154,29 +154,37 @@ class TimelineUpdateNetJob: NetJob {
     
     func submitNextRequest() {
         NSLog("Starting request with query string \(requestParameters.queryString)")
-        session.api.getPublicTimeline(params: requestParameters)
+        session.api.getPublicFeed(params: requestParameters)
             .then(execute: requestSuccessHandler)
             .catch(execute: requestFailureHandler)
     }
 
-    func requestSuccessHandler(notices: [NoticeDTO]) {
-        // Process them and get the valid ones back
-        let realNotices = self.session.noticeManager.processNoticeDTOs(notices: notices)
-        // Put them in our array
-        self.newNotices.append(contentsOf: realNotices)
-        
-        // Have we joined the chain? Only if we got fewer results than we were expecting
-        reachedStart = notices.count < self.perPage
-        
-        self.currentPage += 1
-        if !self.reachedStart && self.currentPage <= self.maxPages {
-            requestParameters.set(page: self.currentPage)
-            self.submitNextRequest()
-        } else {
-            self.finalise()
+    func requestSuccessHandler(feed: Data) {
+        // Process the feed
+        let feedParser = FeedParser()
+        feedParser.parseEntries(data: feed) { parsedEntries, error in
+            guard let parsedEntries = parsedEntries else {
+                self.message = "Failed to parse XML feed"
+                self.failureOccurred = true
+                self.finalise()
+                return
+            }
+            
+            let realNotices = self.session.noticeManager.processNoticeEntries(sourceServer: "https://gs1.karp.id.au/", entries: parsedEntries)
+            // Put them in our array
+            self.newNotices.append(contentsOf: realNotices)
+            
+            // Have we joined the chain? Only if we got fewer results than we were expecting
+            self.reachedStart = parsedEntries.count < self.perPage
+            
+            self.currentPage += 1
+            if !self.reachedStart && self.currentPage <= self.maxPages {
+                self.requestParameters.set(page: self.currentPage)
+                self.submitNextRequest()
+            } else {
+                self.finalise()
+            }
         }
-        
-        return
     }
     
     func requestFailureHandler(error: Error) {

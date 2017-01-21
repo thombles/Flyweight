@@ -61,6 +61,7 @@ public class ASAuthor {
     var avatars: [ASAvatar] = []
     var displayName: String?
     var statusNetUserId: Int64?
+    var bio: String?
 }
 
 public class ASAvatar {

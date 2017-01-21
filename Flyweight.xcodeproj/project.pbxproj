@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */; };
+		522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */; };
+		522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */; };
 		523E03911D1550F900C86765 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E03901D1550F900C86765 /* TimelineViewController.swift */; };
 		5240C4D91D11631E003EDB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4D81D11631E003EDB8D /* AppDelegate.swift */; };
 		5240C4DB1D11631E003EDB8D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4DA1D11631E003EDB8D /* FirstViewController.swift */; };
@@ -76,6 +78,8 @@
 		29E780A2EEAA0E74C0663152 /* Pods_FlyweightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyweightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		5211A4BD1E10A20E001BE3B3 /* Flyweight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flyweight.entitlements; sourceTree = SOURCE_ROOT; };
+		522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		523E03901D1550F900C86765 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		5240C4D51D11631E003EDB8D /* Flyweight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flyweight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240C4D81D11631E003EDB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 		5298B3981E0F29EC00FA7A3C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */,
+				522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */,
 				5298B3991E0F2AC000FA7A3C /* gs001.xcdatamodeld */,
 				5298B39C1E0F2F6600FA7A3C /* DataController.swift */,
 				5298B3A31E0F8D8000FA7A3C /* DataEnums.swift */,
@@ -655,6 +661,7 @@
 				525DDBEC1E2CC265008FAA0C /* EntryParser.swift in Sources */,
 				52DFDCF31D12B538008EF03D /* Server.swift in Sources */,
 				52951C0F1E04B0E700AA8450 /* SessionManager.swift in Sources */,
+				522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */,
 				525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */,
 				5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */,
 				5240C4DD1D11631E003EDB8D /* SecondViewController.swift in Sources */,
@@ -670,6 +677,7 @@
 				52951C111E04B8E400AA8450 /* NetJobManager.swift in Sources */,
 				52DFDCEB1D12B30D008EF03D /* NoticeManager.swift in Sources */,
 				525DDBEB1E2CC265008FAA0C /* AuthorParser.swift in Sources */,
+				522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */,
 				5240C4DB1D11631E003EDB8D /* FirstViewController.swift in Sources */,
 				5298B3A61E0F8DA000FA7A3C /* DataClasses.swift in Sources */,
 				52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */,
