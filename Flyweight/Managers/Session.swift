@@ -41,7 +41,8 @@ class Session {
     var events = SessionEventBus()
     
     // All sessions share a CoreData database
-    static var dataController: DataController = DataController()
+    static var dataController: DataController = DataController(modelName: "gs001", filename: "social.sqlite")
+    static var accountsDataController: DataController = DataController(modelName: "acc001", filename: "accounts.sqlite")
     
     /*init(account: AccountMO) {
         self.account = account
@@ -60,7 +61,11 @@ class Session {
         return Session.dataController.managedObjectContext
     }
     
-    func persist() {
+    var accountsMoc: NSManagedObjectContext {
+        return Session.accountsDataController.managedObjectContext
+    }
+    
+    func persist(moc: NSManagedObjectContext = Session.dataController.managedObjectContext) {
         do {
             try moc.save()
         } catch {
@@ -68,10 +73,10 @@ class Session {
         }
     }
     
-    func fetch<T>(request: NSFetchRequest<T>) -> [T] {
+    func fetch<T>(request: NSFetchRequest<T>, moc: NSManagedObjectContext = Session.dataController.managedObjectContext) -> [T] {
         var results: [T]?
         do {
-            results = try self.moc.fetch(request)
+            results = try moc.fetch(request)
         } catch {
             fatalError("Failed to perform fetch \(error)")
         }

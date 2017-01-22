@@ -20,14 +20,14 @@ import CoreData
 public class AccountMO: NSManagedObject {
     @NSManaged var id: Int64
     @NSManaged var server: String
-    @NSManaged var type: Int32 //todo make this an enum
+    @NSManaged var type: String
     @NSManaged var username: String
     
     // Non-optionals need values
     override public func awakeFromInsert() {
         id = 0
         server = ""
-        type = 0
+        type = ""
         username = ""
     }
 }

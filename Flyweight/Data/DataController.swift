@@ -19,10 +19,10 @@ import CoreData
 class DataController: NSObject {
     var managedObjectContext: NSManagedObjectContext
     
-    override init() {
+    init(modelName: String, filename: String) {
         NSLog("initing datacontroller")
         // Same name as the xcdatamodeld
-        guard let modelURL = Bundle.main.url(forResource: "gs001", withExtension:"momd") else {
+        guard let modelURL = Bundle.main.url(forResource: modelName, withExtension:"momd") else {
             fatalError("Error loading model from bundle")
         }
         
@@ -35,16 +35,14 @@ class DataController: NSObject {
         managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = psc
         
-        //DispatchQueue.global(qos: .background).async {
-            let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let docURL = urls[urls.endIndex - 1]
-            // This is where we save our SQLite database
-            let storeURL = docURL.appendingPathComponent("social.sqlite")
-            do {
-                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-            } catch {
-                fatalError("Error migrating store: \(error)")
-            }
-        //}
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docURL = urls[urls.endIndex - 1]
+        // This is where we save our SQLite database
+        let storeURL = docURL.appendingPathComponent(filename)
+        do {
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+        } catch {
+            fatalError("Error migrating store: \(error)")
+        }
     }
 }

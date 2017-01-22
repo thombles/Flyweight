@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Account" representedClassName="AccountMO" syncable="YES">
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="server" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="username" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="DownloadedBinary" representedClassName="DownloadedBinaryMO" syncable="YES" codeGenerationType="class">
         <attribute name="localPath" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
@@ -71,7 +65,6 @@
         <attribute name="width" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="90" positionY="63" width="128" height="105"/>
         <element name="DownloadedBinary" positionX="-74" positionY="-90" width="128" height="75"/>
         <element name="GSTimeline" positionX="81" positionY="36" width="128" height="30"/>
         <element name="Instance" positionX="-72" positionY="81" width="128" height="73"/>

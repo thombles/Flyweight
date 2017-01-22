@@ -69,6 +69,8 @@ class ContentView: UILabel {
             // TODO probably need to let the touch fall through somehow when I have tap-for-conversation
             
             // Also TODO someday some of these links will be special and do in-app functions instead
+            
+            // TODO use the started and ended to visibly show the press on the URL
         }
         
         

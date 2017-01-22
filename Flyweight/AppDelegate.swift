@@ -38,18 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 1. Make sure we have an Account in DB
         let query = NSFetchRequest<AccountMO>(entityName: "Account")
-        let accountQuery = session.fetch(request: query)
+        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
         if accountQuery.count == 0 {
-            let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: session.moc) as! AccountMO
+            let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: session.accountsMoc) as! AccountMO
             newAccount.id = 1
             newAccount.username = username
             newAccount.server = server
-            session.persist()
+            session.persist(moc: session.accountsMoc)
             
-            // This id allocation will need work hey
+            // TODO This id allocation will need work hey
             keychain.set(password, forKey: "account\(newAccount.id)")
         }
-        let account = session.fetch(request: query).first!
+        let account = session.fetch(request: query, moc: session.accountsMoc).first!
         
         // 2. Create a Session with the account and register it with the SessionManager
         session.account = account
