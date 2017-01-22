@@ -111,10 +111,24 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             return cell
         }
         
-        if let notice = notices[row].notice {
+        if let outerNotice = notices[row].notice {
+            
+            // This is the one we will render by default, unless it's a repeat
+            var notice = outerNotice
+            
+            cell.hideRepeatedBy()
+            if notice.isRepeat {
+                if let repeatedNotice = notice.repeatedNotice {
+                    // Take the user from the outer "did repeat" notice
+                    cell.setRepeatedBy(name: notice.user?.screenName)
+                    // Everything else will have the appearance of being the original notice in the timeline
+                    notice = repeatedNotice
+                }
+            }
+            
             cell.noticeText.htmlContent = notice.htmlContent
-            cell.nickText.text = notice.user?.screenName
-            cell.fullNameText.text = notice.user?.name
+            cell.nickText.text = notice.user?.name
+            cell.fullNameText.text = notice.user?.screenName
             let formatter = DateFormatter()
             formatter.dateStyle = .none
             formatter.timeStyle = .short
@@ -140,6 +154,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.repeatCount.isHidden = notice.repeatNum < 0
             cell.likeCount.text = "\(notice.faveNum)"
             cell.repeatCount.text = "\(notice.repeatNum)"
+            
+            
         }
         return cell
     }

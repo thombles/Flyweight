@@ -26,6 +26,9 @@ class NoticeCell: UITableViewCell {
     @IBOutlet weak var repeatCount: UILabel!
     @IBOutlet weak var repeatImage: UIImageView!
     @IBOutlet weak var likeImage: UIImageView!
+    @IBOutlet weak var metaMessage: UILabel!
+    @IBOutlet weak var metaHeight: NSLayoutConstraint!
+    @IBOutlet weak var metaBottom: NSLayoutConstraint!
     
     override func awakeFromNib() {
         borderView.layer.masksToBounds = false
@@ -42,5 +45,20 @@ class NoticeCell: UITableViewCell {
         repeatImage.image = UIImage(named: "repeat")?.withRenderingMode(.alwaysTemplate)
         likeImage.tintColor = UIColor.darkGray
         repeatImage.tintColor = UIColor.darkGray
+    }
+    
+    func hideRepeatedBy() {
+        metaHeight.constant = 0
+        metaBottom.constant = 0
+        metaMessage.text = ""
+    }
+    
+    // TODO make this tappable and show the profile page of the user who did the repeating
+    
+    func setRepeatedBy(name: String?) {
+        let displayName = name ?? "a user with no name"
+        metaHeight.constant = 16
+        metaBottom.constant = 8
+        metaMessage.text = "Repeated by \(displayName)"
     }
 }
