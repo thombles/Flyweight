@@ -107,11 +107,40 @@ class ServerApi {
     
     func getPublicFeed(params: ListRequestParameters) -> Promise<Data> {
         let path = "statuses/public_timeline.atom\(params.queryString)"
+        // Set up a custom manager with ephemeral config so we don't keep the session cookie
+        // Otherwise once we get the password right it's "stuck"
+        // TODO this doesn't seem to clear instantly after success. However if you get a valid login we're done, so it'll do for the moment...
+        let configuration = URLSessionConfiguration()
+        configuration.httpShouldSetCookies = false
+        let sessionManager = Alamofire.SessionManager(configuration: configuration)
         return Promise { fulfil, reject in
-            Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
+            sessionManager.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
                 if let data = response.data {
                     fulfil(data)
                     return
+                }
+                reject(ApiError(path: path, error: response.result.error))
+            }
+        }
+    }
+    
+    func verifyCredentials(username: String, password: String) -> Promise<Bool> {
+        let path = "account/verify_credentials.json"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path))
+                .authenticate(user: username, password: password)
+                .responseData { (response: DataResponse<Data>) in
+                if let code = response.response?.statusCode {
+                    switch code {
+                    case 200: // expected response if valid credentials
+                        fulfil(true)
+                        return
+                    case 401:
+                        fulfil(false) // expected response if invalid credentials
+                        return
+                    default:
+                        break
+                    }
                 }
                 reject(ApiError(path: path, error: response.result.error))
             }

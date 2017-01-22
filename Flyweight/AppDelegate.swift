@@ -23,41 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        // App has launched
-        // We need to set up our static context so the app will run
-        
-        // Later this will be handled by the login/account selection screen
-        
-        let session = Session()
-        
-        let keychain = KeychainSwift()
-        let username = "user1"
-        let password = "t4qXvLH8q87DuKVX"
-        let server = "https://gs1.karp.id.au/"
-        
-        // 1. Make sure we have an Account in DB
-        let query = NSFetchRequest<AccountMO>(entityName: "Account")
-        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
-        if accountQuery.count == 0 {
-            let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: session.accountsMoc) as! AccountMO
-            newAccount.id = 1
-            newAccount.username = username
-            newAccount.server = server
-            session.persist(moc: session.accountsMoc)
-            
-            // TODO This id allocation will need work hey
-            keychain.set(password, forKey: "account\(newAccount.id)")
-        }
-        let account = session.fetch(request: query, moc: session.accountsMoc).first!
-        
-        // 2. Create a Session with the account and register it with the SessionManager
-        session.account = account
-        SessionManager.sessions.append(session)
-        SessionManager.activeSession = session
-        
-        // Now all our ViewControllers can grab SessionManager.activeSession on viewWillAppear and have all functionality
-        
         return true
     }
 
