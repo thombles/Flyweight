@@ -24,6 +24,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var logInContainer: UIView!
+    @IBOutlet weak var testCredentialsContainer: UIView!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var testCredentialsButton: UIButton!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        logInContainer.layer.cornerRadius = 5.0
+        testCredentialsContainer.layer.cornerRadius = 5.0
+        logInContainer.clipsToBounds = true
+        testCredentialsContainer.clipsToBounds = true
+    }
     
     @IBAction func logInTapped(_ sender: Any) {
         improveServerField()
@@ -131,6 +144,8 @@ class LoginViewController: UIViewController {
         usernameField.isEnabled = false
         passwordField.isEnabled = false
         serverField.isEnabled = false
+        logInButton.isEnabled = false
+        testCredentialsButton.isEnabled = false
         spinner.startAnimating()
         resultLabel.text = ""
     }
@@ -139,6 +154,8 @@ class LoginViewController: UIViewController {
         usernameField.isEnabled = true
         passwordField.isEnabled = true
         serverField.isEnabled = true
+        logInButton.isEnabled = true
+        testCredentialsButton.isEnabled = true
         spinner.stopAnimating()
         resultLabel.isHidden = false
     }
