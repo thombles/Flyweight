@@ -28,5 +28,4 @@ own copyright and licensing. Refer to file headers.
 * Install [CocoaPods](https://cocoapods.org)
 * Open a terminal in the project directory and run `pod install`
 * Open `Flyweight.xcworkspace`
-* Edit `AppDelegate.swift` to set account details for testing. (There is no login screen yet.)
 * Build and run
