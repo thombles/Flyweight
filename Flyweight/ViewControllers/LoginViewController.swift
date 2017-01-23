@@ -29,6 +29,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var testCredentialsButton: UIButton!
     
+    override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    /// If it's covered up, shift the frame so that the bottom of the login button aligns with the top of the keyboard
+    func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardPosition = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect else { return }
+        let loginButtonBase = logInButton.convert(logInButton.bounds, to: self.view).origin.y + logInButton.bounds.height
+        let keyboardTop = view.bounds.height - keyboardPosition.size.height
+        let diff = keyboardTop - loginButtonBase
+        if diff < 0 {
+            self.view.frame = CGRect(x: 0, y: diff, width: self.view.frame.width, height: self.view.frame.height)
+        }
+    }
+    
+    /// When keyboard disappears, reset the frame
+    func keyboardWillHide(notification: NSNotification) {
+        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -114,6 +135,9 @@ class LoginViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen")
         self.view.window?.rootViewController = homeScreen
+        
+        // Unsubscribe from notifications since we're disappearing
+        NotificationCenter.default.removeObserver(self)
     }
     
     /// Help the user format the server URL correctly
@@ -166,6 +190,7 @@ class LoginViewController: UIViewController {
         serverField.text = "https://gs1.karp.id.au/"
         logInTapped(sender)
     }
+    
     
     
 }
