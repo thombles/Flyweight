@@ -107,14 +107,8 @@ class ServerApi {
     
     func getPublicFeed(params: ListRequestParameters) -> Promise<Data> {
         let path = "statuses/public_timeline.atom\(params.queryString)"
-        // Set up a custom manager with ephemeral config so we don't keep the session cookie
-        // Otherwise once we get the password right it's "stuck"
-        // TODO this doesn't seem to clear instantly after success. However if you get a valid login we're done, so it'll do for the moment...
-        let configuration = URLSessionConfiguration()
-        configuration.httpShouldSetCookies = false
-        let sessionManager = Alamofire.SessionManager(configuration: configuration)
         return Promise { fulfil, reject in
-            sessionManager.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
+            Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
                 if let data = response.data {
                     fulfil(data)
                     return
@@ -126,6 +120,7 @@ class ServerApi {
     
     func verifyCredentials(username: String, password: String) -> Promise<Bool> {
         let path = "account/verify_credentials.json"
+        // TODO make this not cache at all
         return Promise { fulfil, reject in
             Alamofire.request(makeApiUrl(path))
                 .authenticate(user: username, password: password)

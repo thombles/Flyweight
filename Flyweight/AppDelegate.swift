@@ -23,7 +23,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        // If we don't have an account in the database, show login screen
+        let session = Session()
+        let query = NSFetchRequest<AccountMO>(entityName: "Account")
+        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
+        if let account = accountQuery.first {
+            session.account = account
+            SessionManager.sessions.append(session)
+            SessionManager.activeSession = session
+        } else {
+            showLoginScreen()
+        }
+        
         return true
+    }
+    
+    func showLoginScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+        window?.makeKeyAndVisible()
+        window?.rootViewController = loginViewController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

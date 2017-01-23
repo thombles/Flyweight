@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="w3J-Kg-EgZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -164,7 +164,7 @@
         <!--Login View Controller-->
         <scene sceneID="Wq5-Ma-fL9">
             <objects>
-                <viewController id="w3J-Kg-EgZ" customClass="LoginViewController" customModule="Flyweight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="w3J-Kg-EgZ" customClass="LoginViewController" customModule="Flyweight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nMm-VZ-ds2"/>
                         <viewControllerLayoutGuide type="bottom" id="sVw-10-CgF"/>
@@ -260,7 +260,6 @@
                         <outlet property="serverField" destination="ywf-VG-NJv" id="4MU-sP-9Ls"/>
                         <outlet property="spinner" destination="cfD-bV-5mZ" id="fCF-Ec-B6J"/>
                         <outlet property="usernameField" destination="7gc-zd-ivD" id="cN6-6V-GDd"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="toMainScreen" id="CJF-bq-MSl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaT-Dp-GAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,7 +269,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="homeScreen" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>

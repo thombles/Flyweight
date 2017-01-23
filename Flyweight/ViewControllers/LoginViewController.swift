@@ -46,6 +46,7 @@ class LoginViewController: UIViewController {
         api.verifyCredentials(username: username, password: password).then { verified -> Void in
             if verified {
                 self.resultLabel.text = "OK!"
+                self.loginSuccess()
             } else {
                 self.resultLabel.text = "Wrong username or password"
             }
@@ -56,6 +57,50 @@ class LoginViewController: UIViewController {
         }
         
         loginInProgress()
+    }
+    
+    func loginSuccess() {
+        let session = Session()
+        let keychain = KeychainSwift()
+
+        // Should always succeed
+        guard let username = usernameField.text,
+            let password = passwordField.text,
+            let server = serverField.text else
+        {
+            return
+        }
+        
+        // 1. Make sure we have an Account in DB
+        let query = NSFetchRequest<AccountMO>(entityName: "Account")
+        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
+        if accountQuery.count == 0 {
+            let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: session.accountsMoc) as! AccountMO
+            newAccount.id = 1 // TODO make this increment once it's possible to have more than one account
+            // Also TODO need to override this when you log out and log back in as somebody else
+            newAccount.username = username
+            newAccount.server = server
+            session.persist(moc: session.accountsMoc)
+            
+            // TODO This id allocation will need work hey
+            keychain.set(password, forKey: "account\(newAccount.id)")
+        }
+        guard let account = session.fetch(request: query, moc: session.accountsMoc).first else
+        {
+            // Should not happen but don't crash
+            return
+        }
+        
+        // 2. Create a Session with the account and register it with the SessionManager
+        session.account = account
+        SessionManager.sessions.append(session)
+        SessionManager.activeSession = session
+        
+        // Now all our ViewControllers can grab SessionManager.activeSession on viewWillAppear and have all functionality
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen")
+        self.view.window?.rootViewController = homeScreen
     }
     
     /// Help the user format the server URL correctly
@@ -99,38 +144,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func useTestCredentialsTapped(_ sender: Any) {
-        
-        let session = Session()
-        
-        // should prob fill in the fields hey
-        let keychain = KeychainSwift()
-        let username = "user1"
-        let password = "t4qXvLH8q87DuKVX"
-        let server = "https://gs1.karp.id.au/"
-        
-        // 1. Make sure we have an Account in DB
-        let query = NSFetchRequest<AccountMO>(entityName: "Account")
-        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
-        if accountQuery.count == 0 {
-            let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: session.accountsMoc) as! AccountMO
-            newAccount.id = 1
-            newAccount.username = username
-            newAccount.server = server
-            session.persist(moc: session.accountsMoc)
-            
-            // TODO This id allocation will need work hey
-            keychain.set(password, forKey: "account\(newAccount.id)")
-        }
-        let account = session.fetch(request: query, moc: session.accountsMoc).first!
-        
-        // 2. Create a Session with the account and register it with the SessionManager
-        session.account = account
-        SessionManager.sessions.append(session)
-        SessionManager.activeSession = session
-        
-        // Now all our ViewControllers can grab SessionManager.activeSession on viewWillAppear and have all functionality
-        
-        performSegue(withIdentifier: "toMainScreen", sender: self)
+        usernameField.text = "user1"
+        passwordField.text = "t4qXvLH8q87DuKVX"
+        serverField.text = "https://gs1.karp.id.au/"
+        logInTapped(sender)
     }
     
     
