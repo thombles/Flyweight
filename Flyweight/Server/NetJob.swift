@@ -103,6 +103,7 @@ class TimelineUpdateNetJob: NetJob {
     var perPage: Int = 50
     var isAuthenticated = false
     var limitNotice: NoticeInGSTimelineMO?
+    var screenName: String?
     
     // Work in progress
     private var currentPage = 1
@@ -148,14 +149,22 @@ class TimelineUpdateNetJob: NetJob {
         self.configureLimitId()
         requestParameters.set(count: perPage)
         requestParameters.set(page: currentPage)
+        if let screenName = screenName {
+            requestParameters.setParam(name: "screen_name", stringValue: screenName)
+        }
         
         submitNextRequest()
     }
     
     func submitNextRequest() {
         NSLog("Starting request with query string \(requestParameters.queryString)")
-        session.api.getPublicFeed(params: requestParameters)
-            .then(execute: requestSuccessHandler)
+        var feedPromise: Promise<Data>?
+        if listType == .Public {
+            feedPromise = session.api.getPublicFeed(params: requestParameters)
+        } else if listType == .Home {
+            feedPromise = session.api.getHomeFeed(params: requestParameters)
+        }
+        feedPromise?.then(execute: requestSuccessHandler)
             .catch(execute: requestFailureHandler)
     }
 

@@ -23,6 +23,10 @@ class UserManager {
         self.session = session
     }
     
+    func getCurrentUsername() -> String {
+        return session.account.username
+    }
+    
     func getUser(server: String?, profileUrl: String?) -> UserMO? {
         guard let profileUrl = profileUrl, let server = server else
         {

@@ -40,15 +40,29 @@ class GSTimelineManager {
     }
     
     func getPublicTimeline(instance: InstanceMO?) -> GSTimelineMO {
-        // ignore instance for the second
+        return getUniqueTimelineOfType(type: .Public, textParam: nil, instance: nil)
+    }
+    
+    func getHomeTimeline(instance: InstanceMO?, username: String) -> GSTimelineMO {
+        return getUniqueTimelineOfType(type: .Home, textParam: username, instance: nil)
+    }
+    
+    private func getUniqueTimelineOfType(type: GSTimelineType, textParam: String?, instance: InstanceMO?) -> GSTimelineMO {
         timelineAcquisitionLock.lock()
         var ret: GSTimelineMO?
         let query = NSFetchRequest<GSTimelineMO>(entityName: "GSTimeline")
-        query.predicate = NSPredicate(format: "listType == %d", GSTimelineType.Public.rawValue)
+        if let textParam = textParam {
+            query.predicate = NSPredicate(format: "listType == %d AND textParam == %@", type.rawValue, textParam)
+        } else {
+            query.predicate = NSPredicate(format: "listType == %d", type.rawValue)
+        }
         let timelines = session.fetch(request: query)
         if timelines.isEmpty {
             let newTimeline = NSEntityDescription.insertNewObject(forEntityName: "GSTimeline", into: session.moc) as! GSTimelineMO
-            newTimeline.listType = GSTimelineType.Public.rawValue
+            newTimeline.listType = type.rawValue
+            if let textParam = textParam {
+                newTimeline.textParam = textParam
+            }
             session.persist()
             ret = newTimeline
         } else {
@@ -83,11 +97,11 @@ class GSTimelineManager {
     }
     
     // Set up refresh, return promise for result
-    func refreshPublicTimeline(lastNotice: NoticeInGSTimelineMO?) -> Promise<RefreshResult> {
+    func refreshTimeline(timeline: GSTimelineMO, lastNotice: NoticeInGSTimelineMO?, screenName: String? = nil) -> Promise<RefreshResult> {
         // A refresh will always involve downloading new data so go straight to the NetJob
         let job = RefreshNetJob(session: session)
         job.limitNotice = lastNotice
-        let timeline = getPublicTimeline(instance: nil)
+        job.screenName = screenName
         
         let refreshPromise: Promise<RefreshResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> RefreshResult in
             let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
@@ -99,19 +113,18 @@ class GSTimelineManager {
             refreshResult.clearListFirst = !result.reachedStart
             return refreshResult
         }
-        job.listType = .Public
+        job.listType = GSTimelineType(rawValue: timeline.listType)
         job.enqueue()
         return refreshPromise
     }
     
     // Set up load more, return promise for result
-    func loadMorePublicTimeline(maxNotice: NoticeInGSTimelineMO?) -> Promise<LoadMoreResult> {
+    func loadMoreTimeline(timeline: GSTimelineMO, maxNotice: NoticeInGSTimelineMO?, screenName: String? = nil) -> Promise<LoadMoreResult> {
         // First let's see if we have more data we can provide out of the database
         // Get things older than the maxId and walk backwards until we have 10 new notices
         // If we fail on the first one, do the NetJob
         // If we reach the end of the chain, use the timeline's atBeginning flag to check
         let maxLimit = maxNotice?.noticeId ?? Int64.max
-        let timeline = getPublicTimeline(instance: nil)
         let query = NSFetchRequest<NoticeInGSTimelineMO>(entityName: "NoticeInGSTimeline")
         query.predicate = NSPredicate(format: "noticeId < %ld", maxLimit)
         let candidates = session.fetch(request: query).sorted { $0.noticeId > $1.noticeId }
@@ -151,6 +164,7 @@ class GSTimelineManager {
             let job = LoadMoreNetJob(session: session)
             job.maxPages = 1
             job.limitNotice = maxNotice
+            job.screenName = screenName
             
             let loadMorePromise: Promise<LoadMoreResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> LoadMoreResult in
                 let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
@@ -167,7 +181,7 @@ class GSTimelineManager {
                 }
                 return loadMoreResult
             }
-            job.listType = .Public
+            job.listType = GSTimelineType(rawValue: timeline.listType)
             job.enqueue()
             return loadMorePromise
         }

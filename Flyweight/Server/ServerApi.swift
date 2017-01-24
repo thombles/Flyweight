@@ -118,6 +118,19 @@ class ServerApi {
         }
     }
     
+    func getHomeFeed(params: ListRequestParameters) -> Promise<Data> {
+        let path = "statuses/home_timeline.atom\(params.queryString)"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
+                if let data = response.data {
+                    fulfil(data)
+                    return
+                }
+                reject(ApiError(path: path, error: response.result.error))
+            }
+        }
+    }
+    
     func verifyCredentials(username: String, password: String) -> Promise<Bool> {
         let path = "account/verify_credentials.json"
         // TODO make this not cache at all

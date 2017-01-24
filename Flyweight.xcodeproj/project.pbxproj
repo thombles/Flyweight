@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */; };
+		5225B0401E3751CC00717130 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */; };
 		522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */; };
 		522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */; };
 		523E03911D1550F900C86765 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E03901D1550F900C86765 /* TimelineViewController.swift */; };
@@ -20,6 +21,7 @@
 		5240C4FB1D11631E003EDB8D /* FlyweightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4FA1D11631E003EDB8D /* FlyweightUITests.swift */; };
 		524C66691E345DDA00BD25EE /* acc001.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 524C66671E345DDA00BD25EE /* acc001.xcdatamodeld */; };
 		524C666B1E34662600BD25EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C666A1E34662600BD25EE /* LoginViewController.swift */; };
+		524E34331E37492A00FBD90E /* PublicTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524E34321E37492A00FBD90E /* PublicTimelineViewController.swift */; };
 		525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE51E2CC265008FAA0C /* ASDTOs.swift */; };
 		525DDBEB1E2CC265008FAA0C /* AuthorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE61E2CC265008FAA0C /* AuthorParser.swift */; };
 		525DDBEC1E2CC265008FAA0C /* EntryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBE71E2CC265008FAA0C /* EntryParser.swift */; };
@@ -82,6 +84,7 @@
 		29E780A2EEAA0E74C0663152 /* Pods_FlyweightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyweightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		5211A4BD1E10A20E001BE3B3 /* Flyweight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flyweight.entitlements; sourceTree = SOURCE_ROOT; };
+		5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		523E03901D1550F900C86765 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		5240C4FC1D11631E003EDB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524C66681E345DDA00BD25EE /* acc001.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = acc001.xcdatamodel; sourceTree = "<group>"; };
 		524C666A1E34662600BD25EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		524E34321E37492A00FBD90E /* PublicTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicTimelineViewController.swift; sourceTree = "<group>"; };
 		525DDBE51E2CC265008FAA0C /* ASDTOs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASDTOs.swift; sourceTree = "<group>"; };
 		525DDBE61E2CC265008FAA0C /* AuthorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorParser.swift; sourceTree = "<group>"; };
 		525DDBE71E2CC265008FAA0C /* EntryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryParser.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				5240C4DC1D11631E003EDB8D /* SecondViewController.swift */,
 				523E03901D1550F900C86765 /* TimelineViewController.swift */,
 				524C666A1E34662600BD25EE /* LoginViewController.swift */,
+				524E34321E37492A00FBD90E /* PublicTimelineViewController.swift */,
+				5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Flyweight/ViewControllers;
@@ -676,6 +682,7 @@
 				522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */,
 				525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */,
 				5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */,
+				5225B0401E3751CC00717130 /* HomeTimelineViewController.swift in Sources */,
 				5240C4DD1D11631E003EDB8D /* SecondViewController.swift in Sources */,
 				52951C151E04F52400AA8450 /* Types.swift in Sources */,
 				525DDBEE1E2CC265008FAA0C /* SourceParser.swift in Sources */,
@@ -690,6 +697,7 @@
 				52A0471F1D12ABC600837750 /* ServerApi.swift in Sources */,
 				52951C111E04B8E400AA8450 /* NetJobManager.swift in Sources */,
 				52DFDCEB1D12B30D008EF03D /* NoticeManager.swift in Sources */,
+				524E34331E37492A00FBD90E /* PublicTimelineViewController.swift in Sources */,
 				524C666B1E34662600BD25EE /* LoginViewController.swift in Sources */,
 				525DDBEB1E2CC265008FAA0C /* AuthorParser.swift in Sources */,
 				522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */,

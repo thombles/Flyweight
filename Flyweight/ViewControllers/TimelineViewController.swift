@@ -15,6 +15,11 @@
 
 import UIKit
 import CoreData
+import PromiseKit
+
+class AbstractError: Error {
+    init() {}
+}
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -31,8 +36,23 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    /// Override in specific timeline
+    func doRefresh() -> Promise<RefreshResult>? {
+        return Promise<RefreshResult>(error: AbstractError())
+    }
+    
+    /// Override in specific timeline
+    func doLoadMore() -> Promise<LoadMoreResult>? {
+        return Promise<LoadMoreResult>(error: AbstractError())
+    }
+    
+    /// Override in specific timeline
+    func doGetTimeline() -> GSTimelineMO? {
+        return nil
+    }
+    
     @IBAction func refreshTapped(_ sender: AnyObject) {
-        let _ = session?.gsTimelineManager.refreshPublicTimeline(lastNotice: self.notices.first)
+        let _ = doRefresh()?
             .then { (result: RefreshResult) -> Void in
                 NSLog("Timeline should update now inserting \(result.noticesToInsert.count) with clear first \(result.clearListFirst)")
                 if result.clearListFirst {
@@ -63,19 +83,26 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.separatorStyle = .none
         
         session = SessionManager.activeSession
-        timeline = session?.gsTimelineManager.getPublicTimeline(instance: nil)
-        if let timeline = timeline {
-            let initialNotices = session?.gsTimelineManager.getNoticesForTimeline(timeline: timeline)
-            notices = initialNotices?.noticesToInsert ?? []
-            tableView.tableFooterView = (initialNotices?.loadMorePossible ?? true) ? loadMoreView : nil
-            NSLog("Loaded timeline and found \(notices.count) notices")
-            self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if timeline == nil {
+            timeline = doGetTimeline()
+            if let timeline = timeline {
+                let initialNotices = session?.gsTimelineManager.getNoticesForTimeline(timeline: timeline)
+                notices = initialNotices?.noticesToInsert ?? []
+                NSLog("Loaded timeline and found \(notices.count) notices")
+                self.tableView.reloadData()
+                // Why is this appearing at the top of the list? It's a footer. Far out.
+                //tableView.tableFooterView = (initialNotices?.loadMorePossible ?? true) ? loadMoreView : nil
+            }
         }
     }
     
     @IBAction func loadMoreTapped(_ sender: Any) {
         NSLog("Load more tapped")
-        let _ = session?.gsTimelineManager.loadMorePublicTimeline(maxNotice: self.notices.last)
+        let _ = doLoadMore()?
             .then { (result: LoadMoreResult) -> Void in
                 NSLog("Timeline should update now append \(result.noticesToInsert.count) with load more possible \(result.loadMorePossible)")
 
