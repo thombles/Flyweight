@@ -47,6 +47,12 @@ class GSTimelineManager {
         return getUniqueTimelineOfType(type: .Home, textParam: username, instance: nil)
     }
     
+    func getUserTimeline(instance: InstanceMO?, username: String) -> GSTimelineMO {
+        // For first version user timelines are unique... you can only see your own
+        // TODO I should set up the instance so that it will be valid data when there are more
+        return getUniqueTimelineOfType(type: .User, textParam: username, instance: nil)
+    }
+    
     private func getUniqueTimelineOfType(type: GSTimelineType, textParam: String?, instance: InstanceMO?) -> GSTimelineMO {
         timelineAcquisitionLock.lock()
         var ret: GSTimelineMO?

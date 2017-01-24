@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */; };
 		5225B0401E3751CC00717130 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */; };
+		5225B0421E375D7F00717130 /* UserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225B0411E375D7F00717130 /* UserTimelineViewController.swift */; };
 		522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */; };
 		522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */; };
 		523E03911D1550F900C86765 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E03901D1550F900C86765 /* TimelineViewController.swift */; };
@@ -85,6 +86,7 @@
 		5211A4BB1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		5211A4BD1E10A20E001BE3B3 /* Flyweight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flyweight.entitlements; sourceTree = SOURCE_ROOT; };
 		5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
+		5225B0411E375D7F00717130 /* UserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineViewController.swift; sourceTree = "<group>"; };
 		522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		523E03901D1550F900C86765 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				524C666A1E34662600BD25EE /* LoginViewController.swift */,
 				524E34321E37492A00FBD90E /* PublicTimelineViewController.swift */,
 				5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */,
+				5225B0411E375D7F00717130 /* UserTimelineViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Flyweight/ViewControllers;
@@ -704,6 +707,7 @@
 				5240C4DB1D11631E003EDB8D /* FirstViewController.swift in Sources */,
 				5298B3A61E0F8DA000FA7A3C /* DataClasses.swift in Sources */,
 				52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */,
+				5225B0421E375D7F00717130 /* UserTimelineViewController.swift in Sources */,
 				52C88A431DAB9D5C0098538C /* NoticeCell.swift in Sources */,
 				52A0471C1D12AB8D00837750 /* DTO.swift in Sources */,
 				52951C1D1E0737AE00AA8450 /* GSTimelineManager.swift in Sources */,

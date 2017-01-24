@@ -17,12 +17,13 @@ import UIKit
 import CoreData
 import PromiseKit
 
-class HomeTimelineViewController : TimelineViewController {
+class UserTimelineViewController : TimelineViewController {
     
     var username = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // In the future this could be any user and instance. For now it is our instance + me
         username = session?.userManager.getCurrentUsername() ?? ""
     }
     
@@ -41,6 +42,6 @@ class HomeTimelineViewController : TimelineViewController {
     }
     
     override func doGetTimeline() -> GSTimelineMO? {
-        return session?.gsTimelineManager.getHomeTimeline(instance: nil, username: username)
+        return session?.gsTimelineManager.getUserTimeline(instance: nil, username: username)
     }
 }

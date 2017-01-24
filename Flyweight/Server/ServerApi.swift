@@ -105,6 +105,8 @@ class ServerApi {
         }
     }
     
+    // These Atom feed ones should be combined as the path is the only thing changing
+    
     func getPublicFeed(params: ListRequestParameters) -> Promise<Data> {
         let path = "statuses/public_timeline.atom\(params.queryString)"
         return Promise { fulfil, reject in
@@ -120,6 +122,19 @@ class ServerApi {
     
     func getHomeFeed(params: ListRequestParameters) -> Promise<Data> {
         let path = "statuses/home_timeline.atom\(params.queryString)"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
+                if let data = response.data {
+                    fulfil(data)
+                    return
+                }
+                reject(ApiError(path: path, error: response.result.error))
+            }
+        }
+    }
+    
+    func getUserFeed(params: ListRequestParameters) -> Promise<Data> {
+        let path = "statuses/user_timeline.atom\(params.queryString)"
         return Promise { fulfil, reject in
             Alamofire.request(makeApiUrl(path)).responseData { (response: DataResponse<Data>) in
                 if let data = response.data {

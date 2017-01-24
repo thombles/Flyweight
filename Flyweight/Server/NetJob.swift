@@ -150,7 +150,7 @@ class TimelineUpdateNetJob: NetJob {
         requestParameters.set(count: perPage)
         requestParameters.set(page: currentPage)
         if let screenName = screenName {
-            requestParameters.setParam(name: "screen_name", stringValue: screenName)
+            requestParameters.setParam(name: "id", stringValue: screenName)
         }
         
         submitNextRequest()
@@ -163,6 +163,8 @@ class TimelineUpdateNetJob: NetJob {
             feedPromise = session.api.getPublicFeed(params: requestParameters)
         } else if listType == .Home {
             feedPromise = session.api.getHomeFeed(params: requestParameters)
+        } else if listType == .User {
+            feedPromise = session.api.getUserFeed(params: requestParameters)
         }
         feedPromise?.then(execute: requestSuccessHandler)
             .catch(execute: requestFailureHandler)
