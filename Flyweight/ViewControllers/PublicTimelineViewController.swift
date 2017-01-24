@@ -19,20 +19,6 @@ import PromiseKit
 
 class PublicTimelineViewController : TimelineViewController {
     
-    override func doRefresh() -> Promise<RefreshResult>? {
-        if let timeline = doGetTimeline() {
-            return session?.gsTimelineManager.refreshTimeline(timeline: timeline, lastNotice: self.notices.first)
-        }
-        return nil
-    }
-    
-    override func doLoadMore() -> Promise<LoadMoreResult>? {
-        if let timeline = doGetTimeline() {
-            return session?.gsTimelineManager.loadMoreTimeline(timeline: timeline, maxNotice: self.notices.last)
-        }
-        return nil
-    }
-    
     override func doGetTimeline() -> GSTimelineMO? {
         return session?.gsTimelineManager.getPublicTimeline(instance: nil)
     }

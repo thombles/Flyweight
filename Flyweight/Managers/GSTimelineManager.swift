@@ -28,6 +28,8 @@ class LoadMoreResult {
     var loadMorePossible = true
 }
 
+class NilTimelineError : Error {}
+
 
 class GSTimelineManager {
     
@@ -103,11 +105,15 @@ class GSTimelineManager {
     }
     
     // Set up refresh, return promise for result
-    func refreshTimeline(timeline: GSTimelineMO, lastNotice: NoticeInGSTimelineMO?, screenName: String? = nil) -> Promise<RefreshResult> {
+    func refreshTimeline(timeline: GSTimelineMO?, lastNotice: NoticeInGSTimelineMO?) -> Promise<RefreshResult> {
+        guard let timeline = timeline else { return Promise<RefreshResult>(error: NilTimelineError()) }
+        
         // A refresh will always involve downloading new data so go straight to the NetJob
         let job = RefreshNetJob(session: session)
         job.limitNotice = lastNotice
-        job.screenName = screenName
+        if timeline.listType == GSTimelineType.Home.rawValue || timeline.listType == GSTimelineType.User.rawValue {
+            job.screenName = timeline.textParam
+        }
         
         let refreshPromise: Promise<RefreshResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> RefreshResult in
             let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
@@ -125,7 +131,9 @@ class GSTimelineManager {
     }
     
     // Set up load more, return promise for result
-    func loadMoreTimeline(timeline: GSTimelineMO, maxNotice: NoticeInGSTimelineMO?, screenName: String? = nil) -> Promise<LoadMoreResult> {
+    func loadMoreTimeline(timeline: GSTimelineMO?, maxNotice: NoticeInGSTimelineMO?, screenName: String? = nil) -> Promise<LoadMoreResult> {
+        guard let timeline = timeline else { return Promise<LoadMoreResult>(error: NilTimelineError()) }
+        
         // First let's see if we have more data we can provide out of the database
         // Get things older than the maxId and walk backwards until we have 10 new notices
         // If we fail on the first one, do the NetJob

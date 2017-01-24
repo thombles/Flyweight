@@ -32,27 +32,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var timeline: GSTimelineMO?
     var notices: [NoticeInGSTimelineMO] = []
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    /// Override in specific timeline
-    func doRefresh() -> Promise<RefreshResult>? {
-        return Promise<RefreshResult>(error: AbstractError())
-    }
-    
-    /// Override in specific timeline
-    func doLoadMore() -> Promise<LoadMoreResult>? {
-        return Promise<LoadMoreResult>(error: AbstractError())
-    }
-    
     /// Override in specific timeline
     func doGetTimeline() -> GSTimelineMO? {
         return nil
     }
     
     @IBAction func refreshTapped(_ sender: AnyObject) {
-        let _ = doRefresh()?
+        let _ = session?.gsTimelineManager.refreshTimeline(timeline: doGetTimeline(), lastNotice: self.notices.first)
             .then { (result: RefreshResult) -> Void in
                 NSLog("Timeline should update now inserting \(result.noticesToInsert.count) with clear first \(result.clearListFirst)")
                 if result.clearListFirst {
@@ -85,8 +71,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         session = SessionManager.activeSession
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if timeline == nil {
             timeline = doGetTimeline()
             if let timeline = timeline {
@@ -102,7 +88,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func loadMoreTapped(_ sender: Any) {
         NSLog("Load more tapped")
-        let _ = doLoadMore()?
+        let _ = session?.gsTimelineManager.loadMoreTimeline(timeline: doGetTimeline(), maxNotice: self.notices.last)
             .then { (result: LoadMoreResult) -> Void in
                 NSLog("Timeline should update now append \(result.noticesToInsert.count) with load more possible \(result.loadMorePossible)")
 
