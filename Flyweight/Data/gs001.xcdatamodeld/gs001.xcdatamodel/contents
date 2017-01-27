@@ -8,13 +8,23 @@
         <attribute name="atBeginning" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="authedAs" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="listType" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="server" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textParam" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="instance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" syncable="YES"/>
+        <relationship name="userParam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Instance" representedClassName="InstanceMO" syncable="YES" codeGenerationType="class">
-        <attribute name="address" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="bioLimit" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentLimit" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="descLimit" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fileQuota" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverOwnUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="textLimit" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uploadsAllowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Notice" representedClassName="NoticeMO" syncable="YES">
         <attribute name="client" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,7 +66,6 @@
         <attribute name="screenName" attributeType="String" syncable="YES"/>
         <attribute name="server" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="avatars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserAvatar" syncable="YES"/>
-        <relationship name="instance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" syncable="YES"/>
     </entity>
     <entity name="UserAvatar" representedClassName="UserAvatarMO" syncable="YES" codeGenerationType="class">
         <attribute name="height" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -66,11 +75,11 @@
     </entity>
     <elements>
         <element name="DownloadedBinary" positionX="-74" positionY="-90" width="128" height="75"/>
-        <element name="GSTimeline" positionX="81" positionY="36" width="128" height="30"/>
-        <element name="Instance" positionX="-72" positionY="81" width="128" height="73"/>
+        <element name="GSTimeline" positionX="81" positionY="36" width="128" height="150"/>
         <element name="Notice" positionX="99" positionY="72" width="128" height="405"/>
         <element name="NoticeInGSTimeline" positionX="108" positionY="117" width="128" height="105"/>
-        <element name="User" positionX="178" positionY="9" width="128" height="165"/>
+        <element name="User" positionX="178" positionY="9" width="128" height="150"/>
         <element name="UserAvatar" positionX="54" positionY="63" width="128" height="30"/>
+        <element name="Instance" positionX="54" positionY="63" width="128" height="210"/>
     </elements>
 </model>

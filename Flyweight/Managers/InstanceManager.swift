@@ -14,6 +14,7 @@
 // limitations under the License.
 
 import Foundation
+import CoreData
 
 class InstanceManager {
     let session: Session
@@ -21,14 +22,53 @@ class InstanceManager {
         self.session = session
     }
     
+    func getInstance(url: String?) -> InstanceMO? {
+        guard let url = url else { return nil }
+        
+        let query = NSFetchRequest<InstanceMO>(entityName: "Instance")
+        query.predicate = NSPredicate(format: "url = %@", url)
+        let results = session.fetch(request: query)
+        return results.first
+    }
     
-    // Getter for a given string
-    // Should do normalise, create new one if needed
-    
-    
-    // Get by id
-    
-    
-    // Private method with static lock to auto-generate a valid primary key between all InstanceManagers
-    
+    func processConfigDTO(url: String, config: GnusocialConfigDTO) -> InstanceMO? {
+        if let existing = getInstance(url: url) { return existing }
+        
+        guard let fileQuota = config.attachments?.fileQuota,
+            let name = config.site?.name,
+            let serverOwnUrl = config.site?.server,
+            let timezone = config.site?.timezone,
+            let uploadsAllowed = config.attachments?.uploads else
+        {
+            return nil
+        }
+        
+        let textLimit = Int64(config.site?.textLimit ?? "") ?? 1000
+        let bioLimit = Int64(config.profile?.bioLimit ?? "") ?? textLimit
+        let contentLimit = Int64(config.notice?.contentLimit ?? "") ?? textLimit
+        let descLimit = Int64(config.group?.descLimit ?? "") ?? textLimit
+        let fileQuota64 = Int64(fileQuota)
+        
+        
+        // Otherwise make a new one
+        let new = NSEntityDescription.insertNewObject(forEntityName: "Instance", into: session.moc) as! InstanceMO
+        new.bioLimit = bioLimit
+        new.contentLimit = contentLimit
+        new.descLimit = descLimit
+        new.fileQuota = fileQuota64
+        new.textLimit = textLimit
+        new.name = name
+        new.serverOwnUrl = serverOwnUrl
+        new.timezone = timezone
+        new.url = url
+        new.uploadsAllowed = uploadsAllowed
+        
+        if let logo = config.site?.logo {
+            new.logo = logo
+        }
+        
+        session.persist()
+        
+        return new
+    }
 }

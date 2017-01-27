@@ -41,26 +41,28 @@ class GSTimelineManager {
         self.session = session
     }
     
-    func getPublicTimeline(instance: InstanceMO?) -> GSTimelineMO {
-        return getUniqueTimelineOfType(type: .Public, textParam: nil, instance: nil)
+    func getPublicTimeline(server: String) -> GSTimelineMO {
+        return getUniqueTimelineOfType(type: .Public, server: server)
     }
     
-    func getHomeTimeline(instance: InstanceMO?, username: String) -> GSTimelineMO {
-        return getUniqueTimelineOfType(type: .Home, textParam: username, instance: nil)
+    func getHomeTimeline(user: UserMO) -> GSTimelineMO {
+        return getUniqueTimelineOfType(type: .Home, server: user.server!, textParam: nil, userParam: user)
     }
     
-    func getUserTimeline(instance: InstanceMO?, username: String) -> GSTimelineMO {
+    func getUserTimeline(user: UserMO) -> GSTimelineMO {
         // For first version user timelines are unique... you can only see your own
         // TODO I should set up the instance so that it will be valid data when there are more
-        return getUniqueTimelineOfType(type: .User, textParam: username, instance: nil)
+        return getUniqueTimelineOfType(type: .User, server: user.server!, textParam: nil, userParam: user)
     }
     
-    private func getUniqueTimelineOfType(type: GSTimelineType, textParam: String?, instance: InstanceMO?) -> GSTimelineMO {
+    private func getUniqueTimelineOfType(type: GSTimelineType, server: String, textParam: String? = nil, userParam: UserMO? = nil) -> GSTimelineMO {
         timelineAcquisitionLock.lock()
         var ret: GSTimelineMO?
         let query = NSFetchRequest<GSTimelineMO>(entityName: "GSTimeline")
         if let textParam = textParam {
             query.predicate = NSPredicate(format: "listType == %d AND textParam == %@", type.rawValue, textParam)
+        } else if let userParam = userParam {
+            query.predicate = NSPredicate(format: "listType == %d AND userParam == %@", type.rawValue, userParam)
         } else {
             query.predicate = NSPredicate(format: "listType == %d", type.rawValue)
         }
@@ -68,9 +70,8 @@ class GSTimelineManager {
         if timelines.isEmpty {
             let newTimeline = NSEntityDescription.insertNewObject(forEntityName: "GSTimeline", into: session.moc) as! GSTimelineMO
             newTimeline.listType = type.rawValue
-            if let textParam = textParam {
-                newTimeline.textParam = textParam
-            }
+            newTimeline.textParam = textParam
+            newTimeline.userParam = userParam
             session.persist()
             ret = newTimeline
         } else {
@@ -111,9 +112,7 @@ class GSTimelineManager {
         // A refresh will always involve downloading new data so go straight to the NetJob
         let job = RefreshNetJob(session: session)
         job.limitNotice = lastNotice
-        if timeline.listType == GSTimelineType.Home.rawValue || timeline.listType == GSTimelineType.User.rawValue {
-            job.screenName = timeline.textParam
-        }
+        job.screenName = timeline.userParam?.name
         
         let refreshPromise: Promise<RefreshResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> RefreshResult in
             let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
@@ -178,7 +177,7 @@ class GSTimelineManager {
             let job = LoadMoreNetJob(session: session)
             job.maxPages = 1
             job.limitNotice = maxNotice
-            job.screenName = screenName
+            job.screenName = timeline.userParam?.name
             
             let loadMorePromise: Promise<LoadMoreResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> LoadMoreResult in
                 let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)

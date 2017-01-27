@@ -23,6 +23,7 @@ class Session {
     var username: String {
         return account.username
     }
+    var user: UserMO!
     var password: String!
     var account: AccountMO! {
         didSet {
@@ -30,6 +31,7 @@ class Session {
             password = keychain.get("account\(account.id)")
         }
     }
+    var instance: InstanceMO!
     lazy var noticeManager: NoticeManager = NoticeManager(session: self)
     lazy var userManager: UserManager = UserManager(session: self)
     lazy var serverManager: ServerManager = ServerManager(session: self)

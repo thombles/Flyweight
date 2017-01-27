@@ -20,6 +20,6 @@ import PromiseKit
 class PublicTimelineViewController : TimelineViewController {
     
     override func doGetTimeline() -> GSTimelineMO? {
-        return session?.gsTimelineManager.getPublicTimeline(instance: nil)
+        return session?.gsTimelineManager.getPublicTimeline(server: session!.user.server!)
     }
 }

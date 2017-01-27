@@ -27,6 +27,6 @@ class HomeTimelineViewController : TimelineViewController {
     }
     
     override func doGetTimeline() -> GSTimelineMO? {
-        return session?.gsTimelineManager.getHomeTimeline(instance: nil, username: username)
+        return session?.gsTimelineManager.getHomeTimeline(user: session!.user)
     }
 }

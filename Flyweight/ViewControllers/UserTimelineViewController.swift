@@ -28,6 +28,6 @@ class UserTimelineViewController : TimelineViewController {
     }
     
     override func doGetTimeline() -> GSTimelineMO? {
-        return session?.gsTimelineManager.getUserTimeline(instance: nil, username: username)
+        return session?.gsTimelineManager.getUserTimeline(user: session!.user)
     }
 }

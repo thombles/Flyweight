@@ -17,6 +17,7 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 import PromiseKit
+import ObjectMapper
 
 class ApiError: Error {
     var path: String
@@ -146,7 +147,7 @@ class ServerApi {
         }
     }
     
-    func verifyCredentials(username: String, password: String) -> Promise<Bool> {
+    func verifyCredentials(username: String, password: String) -> Promise<(Bool, VerifyCredentialsDTO?)> {
         let path = "account/verify_credentials.json"
         // TODO make this not cache at all
         return Promise { fulfil, reject in
@@ -156,14 +157,32 @@ class ServerApi {
                 if let code = response.response?.statusCode {
                     switch code {
                     case 200: // expected response if valid credentials
-                        fulfil(true)
+                        if let data = response.data,
+                            let json = String(data: data, encoding: String.Encoding.utf8) {
+                            fulfil((true, Mapper<VerifyCredentialsDTO>().map(JSONString: json)))
+                        } else {
+                            fulfil((true, nil))
+                        }
                         return
                     case 401:
-                        fulfil(false) // expected response if invalid credentials
+                        fulfil((false, nil)) // expected response if invalid credentials
                         return
                     default:
                         break
                     }
+                }
+                reject(ApiError(path: path, error: response.result.error))
+            }
+        }
+    }
+    
+    func getGnusocialConfig() -> Promise<GnusocialConfigDTO> {
+        let path = "gnusocial/config.json"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path)).responseObject { (response: DataResponse<GnusocialConfigDTO>) in
+                if let parsed = response.result.value {
+                    fulfil(parsed)
+                    return
                 }
                 reject(ApiError(path: path, error: response.result.error))
             }

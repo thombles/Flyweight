@@ -178,3 +178,133 @@ class RightsDTO: Mappable {
         sandbox <- map["sandbox"]
     }
 }
+
+// Collection of objects in /api/gnusocial/config.json
+// A few of them anyway. Don't necessarily care about all the data there.
+
+class SiteConfigDTO: Mappable {
+    var name: String?
+    var server: String?
+    var theme: String?
+    var path: String?
+    var logo: String?
+    var fancy: String?
+    var language: String?
+    var email: String?
+    var broughtBy: String?
+    var broughtByUrl: String?
+    var timezone: String?
+    var closed: String?
+    var inviteOnly: String?
+    var private_: String?
+    var textLimit: String?
+    var ssl: String?
+    var sslServer: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        server <- map["server"]
+        theme <- map["theme"]
+        path <- map["path"]
+        logo <- map["logo"]
+        fancy <- map["fancy"]
+        language <- map["language"]
+        email <- map["email"]
+        broughtBy <- map["broughtby"]
+        broughtByUrl <- map["broughtbyurl"]
+        timezone <- map["timezone"]
+        closed <- map["closed"]
+        inviteOnly <- map["inviteonly"]
+        private_ <- map["private"]
+        textLimit <- map["textlimit"]
+        ssl <- map["ssl"]
+        sslServer <- map["sslserver"]
+    }
+}
+
+class ProfileConfigDTO: Mappable {
+    var bioLimit: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        bioLimit <- map["biolimit"]
+    }
+}
+
+class GroupConfigDTO: Mappable {
+    var descLimit: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        descLimit <- map["desclimit"]
+    }
+}
+
+class NoticeConfigDTO: Mappable {
+    var contentLimit: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        contentLimit <- map["contentlimit"]
+    }
+}
+
+class AttachmentsConfigDTO: Mappable {
+    var uploads: Bool?
+    var fileQuota: Int?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        uploads <- map["uploads"]
+        fileQuota <- map["file_quota"]
+    }
+}
+
+class GnusocialConfigDTO: Mappable {
+    var site: SiteConfigDTO?
+    var profile: ProfileConfigDTO?
+    var group: GroupConfigDTO?
+    var notice: NoticeConfigDTO?
+    var attachments: AttachmentsConfigDTO?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        site <- map["site"]
+        profile <- map["profile"]
+        group <- map["group"]
+        notice <- map["notice"]
+        attachments <- map["attachments"]
+    }
+}
+
+/// We could extract more information out of here if we wanted but I'd rather get it through the atom feed
+class VerifyCredentialsDTO: Mappable {
+    var id: Int64?
+    var statusNetProfileUrl: String?
+    var name: String?
+    var screenName: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        statusNetProfileUrl <- map["statusnet_profile_url"]
+        name <- map["name"]
+        screenName <- map["screen_name"]
+    }
+}
+

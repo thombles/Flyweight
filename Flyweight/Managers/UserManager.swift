@@ -93,5 +93,32 @@ class UserManager {
             user.addToAvatars(avatarMO)
         }
     }
+    
+    func processVerifiedCredentials(server: String, dto: VerifyCredentialsDTO?) -> UserMO? {
+        guard let dto = dto,
+            let id = dto.id,
+            let screenName = dto.name,
+            let name = dto.screenName,
+            let profileUrl = dto.statusNetProfileUrl?.replacingOccurrences(of: "\\", with: "", options: .literal, range: nil) else // Yes this got confused at some point
+        {
+            return nil
+        }
+        
+        if let existing = getUser(server: server, profileUrl: profileUrl) {
+            return existing
+        }
+        
+        // Make a basic User representing us. Should do updates later.
+        let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: session.moc) as! UserMO
+        user.id = id
+        user.profileUrl = profileUrl
+        user.name = name
+        user.screenName = screenName
+        user.server = server
+        
+        session.persist()
+        return user
+
+    }
 
 }

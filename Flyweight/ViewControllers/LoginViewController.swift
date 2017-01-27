@@ -15,6 +15,7 @@
 
 import UIKit
 import CoreData
+import PromiseKit
 
 class LoginViewController: UIViewController {
     
@@ -28,6 +29,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var testCredentialsContainer: UIView!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var testCredentialsButton: UIButton!
+    
+    let session = Session()
     
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -62,7 +65,7 @@ class LoginViewController: UIViewController {
     @IBAction func logInTapped(_ sender: Any) {
         improveServerField()
         
-        // Validate credentials first
+        // Make sure we have credentials to work with first
         guard let username = usernameField.text,
             let password = passwordField.text,
             let server = serverField.text else
@@ -75,10 +78,25 @@ class LoginViewController: UIViewController {
             return
         }
         
-        // All seems okay, so test it
+        
+        // First verify we can get a server config, then verify the credentials
         let api = ServerApi(baseUrl: server)
-        api.verifyCredentials(username: username, password: password).then { verified -> Void in
+        api.getGnusocialConfig().then { config -> Promise<(Bool, VerifyCredentialsDTO?)> in
+            if let instance = self.session.instanceManager.processConfigDTO(url: server, config: config) {
+                self.session.instance = instance
+                // Go on to verifying credentials
+                return api.verifyCredentials(username: username, password: password)
+            } else {
+                return Promise<(Bool, VerifyCredentialsDTO?)>(error: ParseError(reason: "Could not parse server config"))
+            }
+        }.then { verified, dto -> Void in
             if verified {
+                if let user = self.session.userManager.processVerifiedCredentials(server: server, dto: dto) {
+                    self.session.user = user
+                } else {
+                    self.resultLabel.text = "Unexpected result from server"
+                    throw ParseError(reason: "Could not parse credentials response")
+                }
                 self.resultLabel.text = "OK!"
                 self.loginSuccess()
             } else {
@@ -94,7 +112,6 @@ class LoginViewController: UIViewController {
     }
     
     func loginSuccess() {
-        let session = Session()
         let keychain = KeychainSwift()
 
         // Should always succeed
@@ -127,7 +144,7 @@ class LoginViewController: UIViewController {
         
         // 2. Create a Session with the account and register it with the SessionManager
         session.account = account
-        SessionManager.sessions.append(session)
+        SessionManager.sessions = [session]
         SessionManager.activeSession = session
         
         // Now all our ViewControllers can grab SessionManager.activeSession on viewWillAppear and have all functionality

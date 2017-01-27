@@ -98,7 +98,6 @@ class TimelineUpdateNetJob: NetJob {
     
     // Parameters that should be configured before enqueue()
     var listType: GSTimelineType?
-    var instance: InstanceMO?
     var maxPages: Int = 1
     var perPage: Int = 50
     var isAuthenticated = false

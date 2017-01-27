@@ -26,15 +26,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // If we don't have an account in the database, show login screen
         let session = Session()
-        let query = NSFetchRequest<AccountMO>(entityName: "Account")
-        let accountQuery = session.fetch(request: query, moc: session.accountsMoc)
-        if let account = accountQuery.first {
+        let accountQuery = NSFetchRequest<AccountMO>(entityName: "Account")
+        let accountResult = session.fetch(request: accountQuery, moc: session.accountsMoc)
+        if let account = accountResult.first {
             session.account = account
-            SessionManager.sessions.append(session)
-            SessionManager.activeSession = session
-        } else {
-            showLoginScreen()
+            let userQuery = NSFetchRequest<UserMO>(entityName: "User")
+            userQuery.predicate = NSPredicate(format: "server == %@ AND name == %@", account.server, account.username)
+            let userResult = session.fetch(request: userQuery)
+            let instanceQuery = NSFetchRequest<InstanceMO>(entityName: "Instance")
+            let instanceResult = session.fetch(request: instanceQuery)
+            if let user = userResult.first,
+                let instance = instanceResult.first {
+                session.user = user
+                session.instance = instance
+                SessionManager.sessions.append(session)
+                SessionManager.activeSession = session
+                return true
+            }
         }
+        
+        showLoginScreen()
         
         return true
     }
