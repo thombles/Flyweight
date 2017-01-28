@@ -170,6 +170,13 @@ class ContentView: UILabel {
                 }
                 
                 // All done
+            } else if nextBit == "<br" {
+                // Skip until end of tag
+                repeat {
+                    nextChar = ns.substring(with: NSMakeRange(index, 1))
+                    index += 1
+                } while nextChar != ">" && index < ns.length
+                unattOutput += "\n"
             } else if nextChar == "<" {
                 // Skip until end of tag
                 repeat {

@@ -122,4 +122,10 @@ class ContentAttributeTests: XCTestCase {
         XCTAssertEqual(link.startIndex, 5)
         XCTAssertEqual(link.endIndex, 14)
     }
+    
+    func testNewline() {
+        let input = "foo<br />bar"
+        let (att, _) = ContentView.convertHtmlToAttributedString(html: input)
+        XCTAssertEqual(att.string, "foo\nbar")
+    }
 }
