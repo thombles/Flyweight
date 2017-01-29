@@ -92,7 +92,7 @@ class GSTimelineManager {
         for n in notices {
             count += 1
             guard let notice = n.notice else { continue }
-            if !notice.isFavourite && !notice.isDelete {
+            if includeNoticeForDisplay(notice: notice) {
                 res.noticesToInsert.append(n)
             }
             if n.previousNotice == nil && timeline.atBeginning {
@@ -117,10 +117,7 @@ class GSTimelineManager {
         let refreshPromise: Promise<RefreshResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> RefreshResult in
             let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
             let refreshResult = RefreshResult()
-            refreshResult.noticesToInsert = noticesInTimeline.reversed().filter() { n in
-                guard let notice = n.notice else { return false }
-                return !notice.isFavourite && !notice.isDelete
-            }
+            refreshResult.noticesToInsert = self.filterTimelineForDisplay(notices: noticesInTimeline.reversed())
             refreshResult.clearListFirst = !result.reachedStart
             return refreshResult
         }
@@ -148,7 +145,7 @@ class GSTimelineManager {
             for c in candidates {
                 // Take a candidate
                 guard let notice = c.notice else { continue }
-                if notice.isFavourite || notice.isDelete {
+                if !includeNoticeForDisplay(notice: notice) {
                     continue
                 }
                 
@@ -182,10 +179,7 @@ class GSTimelineManager {
             let loadMorePromise: Promise<LoadMoreResult> = job.result.then { (result: TimelineUpdateNetJobResult) -> LoadMoreResult in
                 let noticesInTimeline = self.processRefresh(netJobResult: result, timeline: timeline)
                 let loadMoreResult = LoadMoreResult()
-                loadMoreResult.noticesToInsert = noticesInTimeline.reversed().filter() { n in
-                    guard let notice = n.notice else { return false }
-                    return !notice.isFavourite && !notice.isDelete
-                }
+                loadMoreResult.noticesToInsert = self.filterTimelineForDisplay(notices: noticesInTimeline.reversed())
                 loadMoreResult.loadMorePossible = !result.reachedStart
                 if result.reachedStart {
                     // mark the timeline if we're at the beginning
@@ -241,5 +235,16 @@ class GSTimelineManager {
         
         session.persist()
         return noticesInList
+    }
+    
+    private func filterTimelineForDisplay(notices: [NoticeInGSTimelineMO]) -> [NoticeInGSTimelineMO] {
+        return notices.filter() { n in
+            guard let notice = n.notice else { return false }
+            return includeNoticeForDisplay(notice: notice)
+        }
+    }
+    
+    private func includeNoticeForDisplay(notice: NoticeMO) -> Bool {
+        return !notice.isFavourite && !notice.isDelete && (notice.isOwnPost || notice.isRepeat)
     }
 }

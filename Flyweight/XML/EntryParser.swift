@@ -30,6 +30,7 @@ class EntryParser: NSObject, XMLParserDelegate {
     static let CommentVerb = "http://activitystrea.ms/schema/1.0/comment"
     static let FavouriteVerb = "http://activitystrea.ms/schema/1.0/favorite"
     static let ShareVerb = "http://activitystrea.ms/schema/1.0/share"
+    static let FollowVerb = "http://activitystrea.ms/schema/1.0/follow"
     static let DeleteVerb = "delete" // odd but true
     
     init(parser: XMLParser?, namespace: String, tagName: String, attrs: FeedParser.Attrs, completion: @escaping (ASEntry?) -> Void) {
