@@ -32,6 +32,7 @@
 		525DDBF71E2CD607008FAA0C /* FlyweightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4EF1D11631E003EDB8D /* FlyweightTests.swift */; };
 		525DDBF81E2CD75F008FAA0C /* XmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */; };
 		525DDBFA1E2CDE08008FAA0C /* PostNoticeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 525DDBF91E2CDE08008FAA0C /* PostNoticeFeed.xml */; };
+		526751231E4346E600234CB6 /* HtmlDisplayParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526751221E4346E600234CB6 /* HtmlDisplayParser.swift */; };
 		52951C0B1E04AF0100AA8450 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0A1E04AF0100AA8450 /* Session.swift */; };
 		52951C0F1E04B0E700AA8450 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0E1E04B0E700AA8450 /* SessionManager.swift */; };
 		52951C111E04B8E400AA8450 /* NetJobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C101E04B8E400AA8450 /* NetJobManager.swift */; };
@@ -115,6 +116,7 @@
 		525DDBF21E2CD5C3008FAA0C /* ImageNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ImageNoticeFeed.xml; sourceTree = "<group>"; };
 		525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlTests.swift; sourceTree = "<group>"; };
 		525DDBF91E2CDE08008FAA0C /* PostNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PostNoticeFeed.xml; sourceTree = "<group>"; };
+		526751221E4346E600234CB6 /* HtmlDisplayParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlDisplayParser.swift; sourceTree = "<group>"; };
 		52951C0A1E04AF0100AA8450 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		52951C0E1E04B0E700AA8450 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		52951C101E04B8E400AA8450 /* NetJobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetJobManager.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		5240C4CC1D11631D003EDB8D = {
 			isa = PBXGroup;
 			children = (
+				526751211E4346D300234CB6 /* Util */,
 				525DDBE41E2CC23E008FAA0C /* XML */,
 				5211A4BA1E10A1BD001BE3B3 /* Libs */,
 				5298B39E1E0F3E9500FA7A3C /* Client */,
@@ -280,6 +283,15 @@
 				525DDBF91E2CDE08008FAA0C /* PostNoticeFeed.xml */,
 			);
 			path = DataFiles;
+			sourceTree = "<group>";
+		};
+		526751211E4346D300234CB6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				526751221E4346E600234CB6 /* HtmlDisplayParser.swift */,
+			);
+			name = Util;
+			path = Flyweight/Util;
 			sourceTree = "<group>";
 		};
 		52951C091E0329C800AA8450 /* ViewControllers */ = {
@@ -713,6 +725,7 @@
 				52951C1D1E0737AE00AA8450 /* GSTimelineManager.swift in Sources */,
 				523E03911D1550F900C86765 /* TimelineViewController.swift in Sources */,
 				5298B39D1E0F2F6600FA7A3C /* DataController.swift in Sources */,
+				526751231E4346E600234CB6 /* HtmlDisplayParser.swift in Sources */,
 				52951C0B1E04AF0100AA8450 /* Session.swift in Sources */,
 				52C88A491DAD01D30098538C /* NetImage.swift in Sources */,
 			);
