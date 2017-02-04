@@ -47,7 +47,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gIM-HD-iW4" id="LZ1-HF-Zsz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p54-52-tOJ">
@@ -83,9 +83,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rUS-Ku-1oP">
-                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="u5k-qi-wce">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="u5k-qi-wce">
                             <connections>
                                 <action selector="refreshTapped:" destination="Jo3-Ht-HKE" id="CZC-Rt-kUv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="IsI-zf-B50">
+                            <connections>
+                                <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="NNC-yZ-ajc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -377,18 +382,18 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GFb-Z8-hMD" id="HDg-8j-7ds">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mVI-JI-LQS">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QGZ-gv-Zhn">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -413,9 +418,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E7P-Uc-pV0">
-                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="K1g-hf-Vwc">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="K1g-hf-Vwc">
                             <connections>
                                 <action selector="refreshTapped:" destination="M4r-dO-lql" id="uFe-UL-JPm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="8ae-15-5KM">
+                            <connections>
+                                <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="xZF-yO-EmR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -451,6 +461,82 @@
             </objects>
             <point key="canvasLocation" x="1518" y="-414"/>
         </scene>
+        <!--Compose Notice View Controller-->
+        <scene sceneID="ulF-p9-FGl">
+            <objects>
+                <viewController id="iJn-6Y-YEB" customClass="ComposeNoticeViewController" customModule="Flyweight" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eCR-q9-Qmc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pjf-cD-roG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oAB-lx-sf0">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuD-7s-nmO">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="m7z-GX-Uvz"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="New Notice" id="LWh-sP-9b8">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="glq-em-a62">
+                                            <connections>
+                                                <action selector="cancelTapped:" destination="iJn-6Y-YEB" id="DOT-ud-Hyv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Post" id="Az9-lo-YZX">
+                                            <connections>
+                                                <action selector="postTapped:" destination="iJn-6Y-YEB" id="aD5-MU-8fR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fMC-1e-TRK">
+                                <rect key="frame" x="0.0" y="71" width="300" height="129"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iJn-6Y-YEB" id="TpO-J2-9kZ"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYv-dN-nTT">
+                                <rect key="frame" x="16" y="52" width="268" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zuD-7s-nmO" secondAttribute="trailing" id="4Ov-UK-MO0"/>
+                            <constraint firstItem="Pjf-cD-roG" firstAttribute="top" secondItem="fMC-1e-TRK" secondAttribute="bottom" id="4v0-q4-nGh"/>
+                            <constraint firstItem="UYv-dN-nTT" firstAttribute="leading" secondItem="oAB-lx-sf0" secondAttribute="leadingMargin" id="7II-4b-l7N"/>
+                            <constraint firstItem="fMC-1e-TRK" firstAttribute="leading" secondItem="oAB-lx-sf0" secondAttribute="leading" id="Fe1-Da-rfn"/>
+                            <constraint firstItem="zuD-7s-nmO" firstAttribute="leading" secondItem="oAB-lx-sf0" secondAttribute="leading" id="Kwe-Se-rpF"/>
+                            <constraint firstAttribute="trailing" secondItem="fMC-1e-TRK" secondAttribute="trailing" id="Q39-cK-4iR"/>
+                            <constraint firstItem="zuD-7s-nmO" firstAttribute="top" secondItem="eCR-q9-Qmc" secondAttribute="bottom" id="TNA-3q-nmY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UYv-dN-nTT" secondAttribute="trailing" id="ULT-a6-R2e"/>
+                            <constraint firstAttribute="trailing" secondItem="fMC-1e-TRK" secondAttribute="trailing" id="Uzh-x2-mTr"/>
+                            <constraint firstItem="fMC-1e-TRK" firstAttribute="leading" secondItem="oAB-lx-sf0" secondAttribute="leading" id="WTt-jk-mF9"/>
+                            <constraint firstItem="fMC-1e-TRK" firstAttribute="top" secondItem="UYv-dN-nTT" secondAttribute="bottom" constant="8" id="alq-IR-UTK"/>
+                            <constraint firstItem="UYv-dN-nTT" firstAttribute="top" secondItem="zuD-7s-nmO" secondAttribute="bottom" constant="8" id="n5g-8X-MKz"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="200"/>
+                    <connections>
+                        <outlet property="characterCount" destination="UYv-dN-nTT" id="4hz-ag-QF8"/>
+                        <outlet property="postButton" destination="Az9-lo-YZX" id="x3k-PS-uLo"/>
+                        <outlet property="textContent" destination="fMC-1e-TRK" id="FPJ-Tu-Xez"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJk-yS-J54" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2408" y="-196.10194902548727"/>
+        </scene>
         <!--User Timeline View Controller-->
         <scene sceneID="Wzy-m5-nlc">
             <objects>
@@ -471,18 +557,18 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gxJ-vH-gSB" id="9VF-aK-wba">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FP3-5F-fiU">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qx8-ZN-ySq">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -507,9 +593,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uDP-L3-N0G">
-                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="QDZ-E2-BKe">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="QDZ-E2-BKe">
                             <connections>
                                 <action selector="refreshTapped:" destination="nuW-qK-eZv" id="aiF-wI-b7d"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="9Ni-qE-wgX">
+                            <connections>
+                                <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="QCn-0I-vc4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -550,4 +641,7 @@
         <image name="first" width="30" height="30"/>
         <image name="logo" width="316" height="316"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QCn-0I-vc4"/>
+    </inferredMetricsTieBreakers>
 </document>

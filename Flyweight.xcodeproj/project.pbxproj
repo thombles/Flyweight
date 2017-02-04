@@ -33,6 +33,7 @@
 		525DDBF81E2CD75F008FAA0C /* XmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */; };
 		525DDBFA1E2CDE08008FAA0C /* PostNoticeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 525DDBF91E2CDE08008FAA0C /* PostNoticeFeed.xml */; };
 		526751231E4346E600234CB6 /* HtmlDisplayParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526751221E4346E600234CB6 /* HtmlDisplayParser.swift */; };
+		526751251E455BC000234CB6 /* ComposeNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526751241E455BC000234CB6 /* ComposeNoticeViewController.swift */; };
 		52951C0B1E04AF0100AA8450 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0A1E04AF0100AA8450 /* Session.swift */; };
 		52951C0F1E04B0E700AA8450 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C0E1E04B0E700AA8450 /* SessionManager.swift */; };
 		52951C111E04B8E400AA8450 /* NetJobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52951C101E04B8E400AA8450 /* NetJobManager.swift */; };
@@ -117,6 +118,7 @@
 		525DDBF41E2CD5DB008FAA0C /* XmlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XmlTests.swift; sourceTree = "<group>"; };
 		525DDBF91E2CDE08008FAA0C /* PostNoticeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PostNoticeFeed.xml; sourceTree = "<group>"; };
 		526751221E4346E600234CB6 /* HtmlDisplayParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlDisplayParser.swift; sourceTree = "<group>"; };
+		526751241E455BC000234CB6 /* ComposeNoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeNoticeViewController.swift; sourceTree = "<group>"; };
 		52951C0A1E04AF0100AA8450 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		52951C0E1E04B0E700AA8450 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		52951C101E04B8E400AA8450 /* NetJobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetJobManager.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				524E34321E37492A00FBD90E /* PublicTimelineViewController.swift */,
 				5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */,
 				5225B0411E375D7F00717130 /* UserTimelineViewController.swift */,
+				526751241E455BC000234CB6 /* ComposeNoticeViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Flyweight/ViewControllers;
@@ -694,6 +697,7 @@
 				525DDBEC1E2CC265008FAA0C /* EntryParser.swift in Sources */,
 				52DFDCF31D12B538008EF03D /* Server.swift in Sources */,
 				52951C0F1E04B0E700AA8450 /* SessionManager.swift in Sources */,
+				526751251E455BC000234CB6 /* ComposeNoticeViewController.swift in Sources */,
 				522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */,
 				525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */,
 				5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */,

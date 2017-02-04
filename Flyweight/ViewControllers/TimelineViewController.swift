@@ -184,4 +184,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func noNotices() {
         self.loadMoreButton.titleLabel?.text = "No notices"
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "compose" {
+            let vc = segue.destination
+            // I wish I could set this in the storyboard
+            // It will be ignored on smaller iPhones as modal popovers are not allowed and will be fullscreen
+            vc.preferredContentSize = CGSize(width: 400, height: 300)
+        }
+    }
 }
