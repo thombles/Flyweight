@@ -14,6 +14,7 @@
 // limitations under the License.
 
 import UIKit
+import DateToolsSwift
 
 class NoticeCell: UITableViewCell {
     var session: Session?
@@ -92,11 +93,9 @@ class NoticeCell: UITableViewCell {
             noticeText.htmlContent = notice.htmlContent
             nickText.text = notice.user?.name
             fullNameText.text = notice.user?.screenName
-            let formatter = DateFormatter()
-            formatter.dateStyle = .none
-            formatter.timeStyle = .short
             if let published = notice.published {
-                time.text = formatter.string(from: published as Date)
+                let date = published as Date
+                time.text = Date.shortTimeAgo(since: date)
             }
             if let avatars = notice.user?.avatars {
                 var biggestReasonableSize: UserAvatarMO?

@@ -13,7 +13,9 @@ target 'Flyweight' do
   pod "PromiseKit", "~> 4.0"
   
   use_frameworks!
-  #pod 'RealmSwift'
+  
+  # Used for localised short relative times which are not provided by UIKit
+  pod 'DateToolsSwift', '~> 2.0'
 
   target 'FlyweightTests' do
     inherit! :search_paths
