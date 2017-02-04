@@ -308,3 +308,12 @@ class VerifyCredentialsDTO: Mappable {
     }
 }
 
+/// Transmitted to server when creating a new notice
+class StatusesUpdateDTO {
+    var status: String?
+    var source: String?
+    var inReplyToStatusId: Int64?
+    var latitude: String?
+    var longitude: String?
+    var mediaIds: String?
+}

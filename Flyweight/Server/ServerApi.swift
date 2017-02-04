@@ -31,6 +31,16 @@ class ApiError: Error {
     }
 }
 
+class ApiAuthentication {
+    let username: String
+    let password: String
+    
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
+}
+
 // Use this to build up the parameters and give them to a ServerApi call
 class ApiRequestParameters {
     private var params: [(String, String)] = []
@@ -187,6 +197,40 @@ class ServerApi {
                 reject(ApiError(path: path, error: response.result.error))
             }
         }
+    }
+    
+    /// Server returns completed notice but annoyingly I get XML or JSON only. Not ideal, ignore it for a second.
+    func postNotice(params: StatusesUpdateDTO, auth: ApiAuthentication?) -> Promise<Data> {
+        let path = "statuses/update.json"
+        return Promise { fulfil, reject in
+            Alamofire.request(makeApiUrl(path), method: HTTPMethod.post, parameters:
+                    ["status": params.status ?? "",
+                     "source": params.source ?? "",
+                     "in_reply_to_status_id": "\(params.inReplyToStatusId)",
+                     "lat": params.latitude ?? "",
+                     "long": params.longitude ?? "",
+                     "media_ids": params.mediaIds ?? ""])
+                .authenticate(user: self.usernameForAuth(auth), password: self.passwordForAuth(auth))
+                .responseData { (response: DataResponse<Data>) in
+                    if let statusCode = response.response?.statusCode {
+                        if statusCode == 200 {
+                            if let d = response.data {
+                                fulfil(d)
+                                return
+                            }
+                        }
+                    }
+                    reject(ApiError(path: path, error: response.result.error))
+                }
+        }
+    }
+    
+    private func usernameForAuth(_ auth: ApiAuthentication?) -> String {
+        return auth?.username ?? ""
+    }
+    
+    private func passwordForAuth(_ auth: ApiAuthentication?) -> String {
+        return auth?.password ?? ""
     }
  
     fileprivate func makeApiUrl(_ path: String) -> String {

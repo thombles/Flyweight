@@ -54,7 +54,18 @@ class ComposeNoticeViewController : UIViewController, UITextViewDelegate {
     }
     
     @IBAction func postTapped(_ sender: Any) {
-        self.modalTransitionStyle = .flipHorizontal
-        self.dismiss(animated: true)
+        // This needs to be an interactive NetJob decoupled from the UI but a modal submission will do for the moment
+        postButton.isEnabled = false
+        let update = StatusesUpdateDTO()
+        update.status = textContent.text // TODO enforce limit
+        update.source = "Flyweight"
+        session?.api.postNotice(params: update, auth: session?.auth).then { _ -> Void in
+            self.modalTransitionStyle = .flipHorizontal
+            self.dismiss(animated: true)
+        }.catch { _ in
+            UIAlertView(title: "Error", message: "Could not post", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
+        }.always {
+            self.postButton.isEnabled = true
+        }
     }
 }

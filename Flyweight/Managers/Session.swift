@@ -75,6 +75,10 @@ class Session {
         }
     }
     
+    var auth: ApiAuthentication {
+        return ApiAuthentication(username: self.username, password: self.password)
+    }
+    
     func fetch<T>(request: NSFetchRequest<T>, moc: NSManagedObjectContext = Session.dataController.managedObjectContext) -> [T] {
         var results: [T]?
         do {
