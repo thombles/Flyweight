@@ -111,13 +111,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "notice") as! NoticeCell?) ?? NoticeCell()
-        cell.profileImage.url = nil
-        cell.noticeText.text = ""
-        cell.nickText.text = ""
-        cell.fullNameText.text = ""
-        cell.time.text = ""
-        cell.likeCount.text = ""
-        cell.repeatCount.text = ""
+        cell.notice = nil
         
         let row = indexPath.row
         if row > notices.count {
@@ -125,50 +119,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         if let outerNotice = notices[row].notice {
-            
-            // This is the one we will render by default, unless it's a repeat
-            var notice = outerNotice
-            
-            cell.hideRepeatedBy()
-            if notice.isRepeat {
-                if let repeatedNotice = notice.repeatedNotice {
-                    // Take the user from the outer "did repeat" notice
-                    cell.setRepeatedBy(name: notice.user?.screenName)
-                    // Everything else will have the appearance of being the original notice in the timeline
-                    notice = repeatedNotice
-                }
-            }
-            
-            cell.noticeText.htmlContent = notice.htmlContent
-            cell.nickText.text = notice.user?.name
-            cell.fullNameText.text = notice.user?.screenName
-            let formatter = DateFormatter()
-            formatter.dateStyle = .none
-            formatter.timeStyle = .short
-            if let published = notice.published {
-                cell.time.text = formatter.string(from: published as Date)
-            }
-            cell.profileImage.session = session
-            if let avatars = notice.user?.avatars {
-                var biggest: UserAvatarMO?
-                for obj in avatars {
-                    if let av = obj as? UserAvatarMO {
-                        if av.width > biggest?.width ?? 0 {
-                            biggest = av
-                        }
-                    }
-                }
-                cell.profileImage.url = biggest?.url
-                session?.binaryManager.downloadImageIfNecessary(biggest?.url)
-            } else {
-                cell.profileImage.url = nil
-            }
-            cell.likeCount.isHidden = notice.faveNum < 0
-            cell.repeatCount.isHidden = notice.repeatNum < 0
-            cell.likeCount.text = "\(notice.faveNum)"
-            cell.repeatCount.text = "\(notice.repeatNum)"
-            
-            
+            cell.notice = outerNotice
         }
         return cell
     }

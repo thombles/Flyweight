@@ -21,6 +21,10 @@ class NetImage: UIImageView {
     var session: Session?
     private var downloadListener: EventListenerToken<DownloadBinaryFinishedEvent>?
     
+    override func awakeFromNib() {
+        session = SessionManager.activeSession
+    }
+    
     var url: String? {
         willSet(newUrl) {
             if newUrl == nil || newUrl != self.url {
