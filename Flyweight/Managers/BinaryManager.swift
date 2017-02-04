@@ -17,6 +17,10 @@ import PromiseKit
 import UIKit
 import CoreData
 
+class BinaryError: Error {
+    init() {}
+}
+
 class BinaryManager {
     
     let session: Session
@@ -70,6 +74,34 @@ class BinaryManager {
         let cdFetch = NSFetchRequest<DownloadedBinaryMO>(entityName: "DownloadedBinary")
         cdFetch.predicate = NSPredicate(format: "url == %@", url)
         return session.fetch(request: cdFetch).first
+    }
+    
+    private func decodeImageInBackground(localPath: String) -> Promise<UIImage> {
+        return Promise<UIImage> { fulfil, reject in
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    let calculatedPath = self.pathForFile(localPath)
+                    let data = try Data(contentsOf: calculatedPath)
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            fulfil(image)
+                        }
+                        return
+                    }
+                    reject(BinaryError())
+                } catch {
+                    reject(BinaryError())
+                }
+            }
+        }
+    }
+    
+    func getDownloadedImageForUrl(url: String) -> Promise<UIImage> {
+        let dbmo = getDownloadedBinaryForUrl(url: url)
+        if let path = dbmo?.localPath {
+            return decodeImageInBackground(localPath: path)
+        }
+        return Promise<UIImage>(error: BinaryError())
     }
     
     func downloadImageIfNecessary(_ url: String?) {

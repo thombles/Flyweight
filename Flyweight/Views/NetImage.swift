@@ -46,21 +46,10 @@ class NetImage: UIImageView {
     fileprivate func updateFromQuery() {
         guard let url = self.url else { return }
 
-        if let path = session?.binaryManager.getDownloadedBinaryForUrl(url: url)?.localPath {
-            DispatchQueue.global(qos: .background).async {
-                do {
-                    guard let calculatedPath = SessionManager.activeSession?.binaryManager.pathForFile(path) else
-                    { return }
-                    let data = try Data(contentsOf: calculatedPath)
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.image = image
-                        }
-                    }
-                } catch {
-                    NSLog("Failed to get the file")
-                }
-            }
+        let _ = session?.binaryManager.getDownloadedImageForUrl(url: url).then { image in
+            self.image = image
+        }.catch { _ in
+            // Unable to show image yet
         }
     }
 }
