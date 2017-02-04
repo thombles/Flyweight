@@ -52,6 +52,9 @@ class EntryParser: NSObject, XMLParserDelegate {
             entry.activityVerb = tagText["activityVerb"]
             entry.published = FeedParser.dateFromTimestamp(string: tagText["published"])
             entry.updated = FeedParser.dateFromTimestamp(string: tagText["updated"])
+            if entry.statusNetNoticeId == nil {
+                entry.statusNetNoticeId = Int64(tagText["noticeId"] ?? "")
+            }
             
             // Some verb processing to help downstream user process it
             entry.isFavourite = (entry.activityVerb == EntryParser.FavouriteVerb)
@@ -84,8 +87,13 @@ class EntryParser: NSObject, XMLParserDelegate {
             self.entry.htmlLink = attrs["href"]
         }
         if namespace == FeedParser.AtomNS /* wrong but anyway */ && element == "status_net" {
-            if entry.statusNetNoticeId == nil { // can be set two ways
+            if entry.statusNetNoticeId == nil { // can be set multiple ways
                 entry.statusNetNoticeId = Int64(attrs["notice_id"] ?? "")
+            }
+        }
+        if namespace == FeedParser.StatusNetNS && element == "notice_id" {
+            if entry.statusNetNoticeId == nil {
+                return "noticeId"
             }
         }
         if namespace == FeedParser.ActivityStreamNS && element == "verb" { return "activityVerb" }
