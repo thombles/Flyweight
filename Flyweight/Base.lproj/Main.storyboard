@@ -84,11 +84,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="rUS-Ku-1oP">
                         <barButtonItem key="leftBarButtonItem" title="Refresh" id="u5k-qi-wce">
+                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="refreshTapped:" destination="Jo3-Ht-HKE" id="CZC-Rt-kUv"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="IsI-zf-B50">
+                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="NNC-yZ-ajc"/>
                             </connections>
@@ -302,6 +304,12 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.32860380410000001" green="0.63284623620000002" blue="0.4009793103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="2Nm-Rf-bgR" kind="relationship" relationship="viewControllers" id="obQ-zw-cNt"/>
@@ -419,11 +427,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="E7P-Uc-pV0">
                         <barButtonItem key="leftBarButtonItem" title="Refresh" id="K1g-hf-Vwc">
+                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="refreshTapped:" destination="M4r-dO-lql" id="uFe-UL-JPm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="8ae-15-5KM">
+                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="xZF-yO-EmR"/>
                             </connections>
@@ -481,11 +491,13 @@
                                 <items>
                                     <navigationItem title="New Notice" id="LWh-sP-9b8">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="glq-em-a62">
+                                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelTapped:" destination="iJn-6Y-YEB" id="DOT-ud-Hyv"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Post" id="Az9-lo-YZX">
+                                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="postTapped:" destination="iJn-6Y-YEB" id="aD5-MU-8fR"/>
                                             </connections>
@@ -594,11 +606,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="uDP-L3-N0G">
                         <barButtonItem key="leftBarButtonItem" title="Refresh" id="QDZ-E2-BKe">
+                            <color key="tintColor" red="0.32787960999999999" green="0.63262705009999998" blue="0.3982903223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="refreshTapped:" destination="nuW-qK-eZv" id="aiF-wI-b7d"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="9Ni-qE-wgX">
+                            <color key="tintColor" red="0.327879609991237" green="0.63262705011666676" blue="0.39829032227999928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="iJn-6Y-YEB" kind="presentation" identifier="compose" modalPresentationStyle="formSheet" id="QCn-0I-vc4"/>
                             </connections>

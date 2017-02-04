@@ -59,6 +59,7 @@
 		52DFDCF31D12B538008EF03D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF21D12B538008EF03D /* Server.swift */; };
 		52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF41D12B5C8008EF03D /* UserManager.swift */; };
 		52DFDCF71D12B5D8008EF03D /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF61D12B5D8008EF03D /* ServerManager.swift */; };
+		52FE933D1E45932F008D0186 /* ReferenceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE933C1E45932F008D0186 /* ReferenceData.swift */; };
 		6D3AD9C054F33EB224A0CD90 /* Pods_FlyweightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C729FDA5AD8AE8059947DC /* Pods_FlyweightTests.framework */; };
 		BB82444FB7677278B3567E40 /* Pods_Flyweight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859E231B31B17755518A6700 /* Pods_Flyweight.framework */; };
 		F9277CD63E9F0A1647FC2FE3 /* Pods_FlyweightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E780A2EEAA0E74C0663152 /* Pods_FlyweightUITests.framework */; };
@@ -144,6 +145,7 @@
 		52DFDCF21D12B538008EF03D /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		52DFDCF41D12B5C8008EF03D /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		52DFDCF61D12B5D8008EF03D /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		52FE933C1E45932F008D0186 /* ReferenceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceData.swift; sourceTree = "<group>"; };
 		6236EFCE1069DBFF271D71FC /* Pods-FlyweightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyweightUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlyweightUITests/Pods-FlyweightUITests.release.xcconfig"; sourceTree = "<group>"; };
 		859E231B31B17755518A6700 /* Pods_Flyweight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flyweight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A643ED879E47C0E689D35 /* Pods-FlyweightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyweightUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlyweightUITests/Pods-FlyweightUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				526751221E4346E600234CB6 /* HtmlDisplayParser.swift */,
+				52FE933C1E45932F008D0186 /* ReferenceData.swift */,
 			);
 			name = Util;
 			path = Flyweight/Util;
@@ -724,6 +727,7 @@
 				5298B3A61E0F8DA000FA7A3C /* DataClasses.swift in Sources */,
 				52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */,
 				5225B0421E375D7F00717130 /* UserTimelineViewController.swift in Sources */,
+				52FE933D1E45932F008D0186 /* ReferenceData.swift in Sources */,
 				52C88A431DAB9D5C0098538C /* NoticeCell.swift in Sources */,
 				52A0471C1D12AB8D00837750 /* DTO.swift in Sources */,
 				52951C1D1E0737AE00AA8450 /* GSTimelineManager.swift in Sources */,

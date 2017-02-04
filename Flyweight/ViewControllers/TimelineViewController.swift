@@ -32,6 +32,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var timeline: GSTimelineMO?
     var notices: [NoticeInGSTimelineMO] = []
     
+    override func awakeFromNib() {
+        
+    }
+    
     /// Override in specific timeline
     func doGetTimeline() -> GSTimelineMO? {
         return nil
