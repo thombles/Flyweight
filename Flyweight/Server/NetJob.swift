@@ -164,6 +164,8 @@ class TimelineUpdateNetJob: NetJob {
             feedPromise = session.api.getHomeFeed(params: requestParameters)
         } else if listType == .User {
             feedPromise = session.api.getUserFeed(params: requestParameters)
+        } else if listType == .Mentions {
+            feedPromise = session.api.getMentionsFeed(params: requestParameters)
         }
         feedPromise?.then(execute: requestSuccessHandler)
             .catch(execute: requestFailureHandler)

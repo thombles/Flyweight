@@ -60,6 +60,7 @@
 		52DFDCF51D12B5C8008EF03D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF41D12B5C8008EF03D /* UserManager.swift */; };
 		52DFDCF71D12B5D8008EF03D /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DFDCF61D12B5D8008EF03D /* ServerManager.swift */; };
 		52FE933D1E45932F008D0186 /* ReferenceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE933C1E45932F008D0186 /* ReferenceData.swift */; };
+		52FE93441E46AB03008D0186 /* MentionsTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE93431E46AB03008D0186 /* MentionsTimelineViewController.swift */; };
 		6D3AD9C054F33EB224A0CD90 /* Pods_FlyweightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C729FDA5AD8AE8059947DC /* Pods_FlyweightTests.framework */; };
 		BB82444FB7677278B3567E40 /* Pods_Flyweight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859E231B31B17755518A6700 /* Pods_Flyweight.framework */; };
 		F9277CD63E9F0A1647FC2FE3 /* Pods_FlyweightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E780A2EEAA0E74C0663152 /* Pods_FlyweightUITests.framework */; };
@@ -146,6 +147,7 @@
 		52DFDCF41D12B5C8008EF03D /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		52DFDCF61D12B5D8008EF03D /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		52FE933C1E45932F008D0186 /* ReferenceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceData.swift; sourceTree = "<group>"; };
+		52FE93431E46AB03008D0186 /* MentionsTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsTimelineViewController.swift; sourceTree = "<group>"; };
 		6236EFCE1069DBFF271D71FC /* Pods-FlyweightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyweightUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlyweightUITests/Pods-FlyweightUITests.release.xcconfig"; sourceTree = "<group>"; };
 		859E231B31B17755518A6700 /* Pods_Flyweight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flyweight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58A643ED879E47C0E689D35 /* Pods-FlyweightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyweightUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlyweightUITests/Pods-FlyweightUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				5225B03F1E3751CC00717130 /* HomeTimelineViewController.swift */,
 				5225B0411E375D7F00717130 /* UserTimelineViewController.swift */,
 				526751241E455BC000234CB6 /* ComposeNoticeViewController.swift */,
+				52FE93431E46AB03008D0186 /* MentionsTimelineViewController.swift */,
 			);
 			name = ViewControllers;
 			path = Flyweight/ViewControllers;
@@ -703,6 +706,7 @@
 				526751251E455BC000234CB6 /* ComposeNoticeViewController.swift in Sources */,
 				522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */,
 				525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */,
+				52FE93441E46AB03008D0186 /* MentionsTimelineViewController.swift in Sources */,
 				5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */,
 				5225B0401E3751CC00717130 /* HomeTimelineViewController.swift in Sources */,
 				5240C4DD1D11631E003EDB8D /* SecondViewController.swift in Sources */,

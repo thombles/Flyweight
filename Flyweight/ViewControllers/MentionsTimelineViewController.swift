@@ -13,18 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+import UIKit
+import CoreData
+import PromiseKit
 
-@objc public enum GSTimelineType: Int32 {
-    case Home = 1
-    case User = 2
-    case Public = 3
-    case KnownNetwork = 4
-    case Mentions = 5 // basic mentions_timeline implementation, notices only
-    case Favourites = 6
-    case Search = 7
-    case Tag = 8
-    case Group = 9
-    case Notifications = 10 // a fuller featured stream from Qvitter
-    case Conversation = 11
+class MentionsTimelineViewController : TimelineViewController {
+    override func doGetTimeline() -> GSTimelineMO? {
+        return session?.gsTimelineManager.getMentionsTimeline(user: session!.user)
+    }
 }

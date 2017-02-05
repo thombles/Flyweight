@@ -55,6 +55,10 @@ class GSTimelineManager {
         return getUniqueTimelineOfType(type: .User, server: user.server!, textParam: nil, userParam: user)
     }
     
+    func getMentionsTimeline(user: UserMO) -> GSTimelineMO {
+        return getUniqueTimelineOfType(type: .Mentions, server: user.server!, textParam: nil, userParam: user)
+    }
+    
     private func getUniqueTimelineOfType(type: GSTimelineType, server: String, textParam: String? = nil, userParam: UserMO? = nil) -> GSTimelineMO {
         timelineAcquisitionLock.lock()
         var ret: GSTimelineMO?
