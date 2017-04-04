@@ -13,6 +13,7 @@
 		522BCEB41E32F300003101E4 /* NoticeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */; };
 		522BCEB51E32F300003101E4 /* NoticeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */; };
 		523E03911D1550F900C86765 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E03901D1550F900C86765 /* TimelineViewController.swift */; };
+		523E4F161E93AEC30035C108 /* MastodonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E4F151E93AEC30035C108 /* MastodonDTO.swift */; };
 		5240C4D91D11631E003EDB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4D81D11631E003EDB8D /* AppDelegate.swift */; };
 		5240C4DB1D11631E003EDB8D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4DA1D11631E003EDB8D /* FirstViewController.swift */; };
 		5240C4DD1D11631E003EDB8D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240C4DC1D11631E003EDB8D /* SecondViewController.swift */; };
@@ -94,6 +95,7 @@
 		522BCEB21E32F300003101E4 /* NoticeMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		522BCEB31E32F300003101E4 /* NoticeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoticeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		523E03901D1550F900C86765 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		523E4F151E93AEC30035C108 /* MastodonDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonDTO.swift; sourceTree = "<group>"; };
 		5240C4D51D11631E003EDB8D /* Flyweight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flyweight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240C4D81D11631E003EDB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5240C4DA1D11631E003EDB8D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				52A0471B1D12AB8D00837750 /* DTO.swift */,
+				523E4F151E93AEC30035C108 /* MastodonDTO.swift */,
 				52A0471E1D12ABC600837750 /* ServerApi.swift */,
 				52C88A441DACF5710098538C /* NetJob.swift */,
 				52DFDCF21D12B538008EF03D /* Server.swift */,
@@ -708,6 +711,7 @@
 				525DDBEA1E2CC265008FAA0C /* ASDTOs.swift in Sources */,
 				52FE93441E46AB03008D0186 /* MentionsTimelineViewController.swift in Sources */,
 				5211A4BC1E10A1C8001BE3B3 /* KeychainSwiftDistrib.swift in Sources */,
+				523E4F161E93AEC30035C108 /* MastodonDTO.swift in Sources */,
 				5225B0401E3751CC00717130 /* HomeTimelineViewController.swift in Sources */,
 				5240C4DD1D11631E003EDB8D /* SecondViewController.swift in Sources */,
 				52951C151E04F52400AA8450 /* Types.swift in Sources */,
